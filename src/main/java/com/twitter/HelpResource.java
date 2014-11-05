@@ -7,6 +7,7 @@
  * of its trade secrets, irrespective of what has been deposited with the
  * U.S. Copyright Office.
  */
+
 package com.twitter;
 
 import com.tomitribe.tribestream.governance.api.ApplicationLimit;
@@ -63,7 +64,7 @@ public class HelpResource {
     @SeeAlso({@See(href = "/docs/api/1.1/get/help/configuration", value = "GET help/configuration"), @See(href = "/docs/api/1.1/get/help/languages", value = "GET help/languages"), @See(href = "/docs/api/1.1/get/help/tos", value = "GET help/tos")})
     @ApplicationLimit(rate = @Rate(window = 15, unit = GovernanceUnit.MINUTES, limit = 15))
     @UserLimit(rate = @Rate(window = 15, unit = GovernanceUnit.MINUTES, limit = 15))
-    @Description("Returns Twitter&amp;#039;s Privacy Policy.")
+    @Description("Returns Twitter&#039;s Privacy Policy.")
     public Response getPrivacy() {
         //TODO: implement
         return null;

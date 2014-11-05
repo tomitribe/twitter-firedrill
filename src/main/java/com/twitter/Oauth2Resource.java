@@ -7,6 +7,7 @@
  * of its trade secrets, irrespective of what has been deposited with the
  * U.S. Copyright Office.
  */
+
 package com.twitter;
 
 import com.tomitribe.wadlx.api.ApiVersion;
@@ -42,8 +43,8 @@ public class Oauth2Resource {
     @ApiVersion({"1.1"})
     @Tag({"OAuth"})
     @SeeAlso({@See(href = "/docs/auth/application-only-auth", value = "Application-only authentication"), @See(href = "/docs/rate-limiting/1.1", value = "REST API Rate Limiting in v1.1"), @See(href = "/docs/api/1.1/post/oauth2/invalidate_token", value = "POST oauth2/invalidate_token")})
-    @Description("Allows a registered application to obtain an OAuth 2 Bearer Token, which can be used to make API requests on an application")
-    public Response postToken(@Description("Specifies the type of grant being requested by the application. At this time, only ")
+    @Description("Allows a registered application to obtain an OAuth 2 Bearer Token, which can be used to make API requests on an application&#039;s own behalf, without a user context. This is called Application-only authentication. A Bearer Token may be invalidated using oauth2/invalidate_token.")
+    public Response postToken(@Description("Specifies the type of grant being requested by the application. At this time, only <tt>client_credentials</tt> is allowed. See <a href=\"https://dev.twitter.com/docs/auth/application-only-auth\">Application-only authentication</a> for more information.")
                               @PathParam("grant_type") final String grant_type) {
         //TODO: implement
         return null;

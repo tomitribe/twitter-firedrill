@@ -7,6 +7,7 @@
  * of its trade secrets, irrespective of what has been deposited with the
  * U.S. Copyright Office.
  */
+
 package com.twitter;
 
 import com.tomitribe.tribestream.governance.api.ApplicationLimit;
@@ -39,13 +40,13 @@ public class DirectmessagesResource {
     @ApiVersion({"1.1"})
     @ApplicationLimit()
     @UserLimit(rate = @Rate(window = 15, unit = GovernanceUnit.MINUTES, limit = 15))
-    @Description("Returns the 20 most recent direct messages sent by the authenticating user. Includes detailed information about the sender and recipient user. You can request up to 200 direct messages per call, up to a maximum of 800 outgoing DMs. Important: This method requires an access token with RWD (read, write ")
+    @Description("Returns the 20 most recent direct messages sent by the authenticating user. Includes detailed information about the sender and recipient user. You can request up to 200 direct messages per call, up to a maximum of 800 outgoing DMs. Important: This method requires an access token with RWD (read, write &amp; direct message) permissions.")
     public TweetsType getSent(@Description("Returns results with an ID greater than (that is, more recent than) the specified ID. There are limits to the number of Tweets which can be accessed through the API. If the limit of Tweets has occured since the since_id, the since_id will be forced to the oldest ID available.")
                               @QueryParam("since_id") final Integer since_id, @Description("Returns results with an ID less than (that is, older than) or equal to the specified ID.")
                               @QueryParam("max_id") final Integer max_id, @Description("Specifies the number of records to retrieve. Must be less than or equal to 200.")
                               @QueryParam("count") final Integer count, @Description("Specifies the page of results to retrieve.")
                               @QueryParam("page") final Integer page,
-                              @Description("The &lt;tt&gt;entities&lt;/tt&gt; node will not be included when set to &lt;tt&gt;false&lt;/tt&gt;.")
+                              @Description("The <tt>entities</tt> node will not be included when set to <tt>false</tt>.")
                               @QueryParam("include_entities") final Boolean include_entities) {
         //TODO: implement
         return null;
@@ -60,7 +61,7 @@ public class DirectmessagesResource {
     @SeeAlso({@See(href = "/docs/api/1.1/get/direct_messages", value = "GET direct_messages"), @See(href = "/docs/api/1.1/get/direct_messages/sent", value = "GET direct_messages/sent")})
     @ApplicationLimit()
     @UserLimit(rate = @Rate(window = 15, unit = GovernanceUnit.MINUTES, limit = 15))
-    @Description("Returns a single direct message, specified by an id parameter. Like the /1.1/direct_messages.format request, this method will include the user objects of the sender and recipient. Important: This method requires an access token with RWD (read, write ")
+    @Description("Returns a single direct message, specified by an id parameter. Like the /1.1/direct_messages.format request, this method will include the user objects of the sender and recipient. Important: This method requires an access token with RWD (read, write &amp; direct message) permissions. Consult The Application Permission Model for more information.")
     public Response getShow(@Description("The ID of the direct message.")
                             @PathParam("id") final int id) {
         //TODO: implement
@@ -72,9 +73,9 @@ public class DirectmessagesResource {
     @Path("/destroy")
     @Category({"direct_messages"})
     @ApiVersion({"1.1"})
-    @Description("Destroys the direct message specified in the required ID parameter. The authenticating user must be the recipient of the specified direct message. Important: This method requires an access token with RWD (read, write ")
+    @Description("Destroys the direct message specified in the required ID parameter. The authenticating user must be the recipient of the specified direct message. Important: This method requires an access token with RWD (read, write &amp; direct message) permissions. Consult The Application Permission Model for more information.")
     public TweetsType postDestroy(@Description("The ID of the direct message to delete.")
-                                  @PathParam("id") final int id, @Description("The &lt;tt&gt;entities&lt;/tt&gt; node will not be included when set to &lt;tt&gt;false&lt;/tt&gt;.")
+                                  @PathParam("id") final int id, @Description("The <tt>entities</tt> node will not be included when set to <tt>false</tt>.")
                                   @QueryParam("include_entities") final Boolean include_entities) {
         //TODO: implement
         return null;

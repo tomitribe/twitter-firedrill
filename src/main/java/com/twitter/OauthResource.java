@@ -7,6 +7,7 @@
  * of its trade secrets, irrespective of what has been deposited with the
  * U.S. Copyright Office.
  */
+
 package com.twitter;
 
 import com.tomitribe.wadlx.api.ApiVersion;
@@ -52,10 +53,10 @@ public class OauthResource {
     @Tag({"OAuth"})
     @SeeAlso({@See(href = "/docs/auth", value = "Authentication &amp;amp; Authorization"), @See(href = "/docs/api/1/post/oauth/request_token", value = "POST oauth/request_token"), @See(href = "/docs/api/1/get/oauth/authorize", value = "GET oauth/authorize"), @See(href = "/docs/oauth/xauth", value = "xAuth"), @See(href = "/docs/api/1/get/oauth/authenticate", value = "GET oauth/authenticate"), @See(href = "/docs/security/best-practices", value = "Security Best Practices"), @See(href = "/docs/auth/obtaining-access-tokens", value = "Obtaining access tokens")})
     @Description("Allows a Consumer application to exchange the OAuth Request Token for an OAuth Access Token. This method fulfills Section 6.3 of the OAuth 1.0 authentication flow. The OAuth access token may also be used for xAuth operations. Please use HTTPS for this method, and all other OAuth token negotiation steps.")
-    public void postAccess_token(@Description("The password of the user for which to obtain a token for. &lt;strong&gt;Required when using xAuth&lt;/strong&gt;")
-                                 @QueryParam("x_auth_password") final String x_auth_password, @Description("The username of the user to obtain a token for. &lt;strong&gt;Required when using xAuth&lt;/strong&gt;")
-                                 @QueryParam("x_auth_username") final String x_auth_username, @Description("Set this value to &lt;tt&gt;client_auth&lt;/tt&gt;, without the quotes. &lt;strong&gt;Required when using xAuth&lt;/strong&gt;")
-                                 @QueryParam("x_auth_mode") final String x_auth_mode, @Description("If using the OAuth web-flow, set this parameter to the value of the ")
+    public void postAccess_token(@Description("The password of the user for which to obtain a token for. <strong>Required when using xAuth</strong>")
+                                 @QueryParam("x_auth_password") final String x_auth_password, @Description("The username of the user to obtain a token for. <strong>Required when using xAuth</strong>")
+                                 @QueryParam("x_auth_username") final String x_auth_username, @Description("Set this value to <tt>client_auth</tt>, without the quotes. <strong>Required when using xAuth</strong>")
+                                 @QueryParam("x_auth_mode") final String x_auth_mode, @Description("If using the OAuth web-flow, set this parameter to the value of the <tt>oauth_verifier</tt> returned in the callback URL. If you are using out-of-band OAuth, set this value to the pin-code. When using xAuth, this value should not be included.")
                                  @QueryParam("oauth_verifier") final String oauth_verifier) {
         //TODO: implement
     }
@@ -66,8 +67,8 @@ public class OauthResource {
     @Tag({"OAuth"})
     @SeeAlso({@See(href = "/docs/api/1/post/oauth/access_token", value = "POST oauth/access_token"), @See(href = "/docs/api/1/get/oauth/authorize", value = "GET oauth/authorize"), @See(href = "/docs/api/1/get/oauth/authenticate", value = "GET oauth/authenticate"), @See(href = "/docs/auth/oauth", value = "OAuth"), @See(href = "/docs/security/best-practices", value = "Security Best Practices"), @See(href = "/docs/auth", value = "Authentication &amp;amp; Authorization")})
     @Description("Allows a Consumer application to obtain an OAuth Request Token to request user authorization. This method fulfills Section 6.1 of the OAuth 1.0 authentication flow. It is strongly recommended you use HTTPS for all OAuth authorization steps. Usage Note: Only ASCII values are accepted for the oauth_nonce")
-    public void postRequest_token(@Description("For OAuth 1.0a compliance this parameter is &lt;strong&gt;required&lt;/strong&gt;. The value you specify here will be used as the URL a user is redirected to should they approve your application&apos;s access to their account. Set this to &lt;tt&gt;oob&lt;/tt&gt; for out-of-band pin mode. This is also how you specify custom callbacks for use in desktop/mobile applications. ")
-                                  @PathParam("oauth_callback") final String oauth_callback, @Description("Overrides the access level an application requests to a users account. Supported values are ")
+    public void postRequest_token(@Description("For OAuth 1.0a compliance this parameter is <strong>required</strong>. The value you specify here will be used as the URL a user is redirected to should they approve your application's access to their account. Set this to <tt>oob</tt> for out-of-band pin mode. This is also how you specify custom callbacks for use in desktop/mobile applications. ")
+                                  @PathParam("oauth_callback") final String oauth_callback, @Description("Overrides the access level an application requests to a users account. Supported values are <tt>read</tt> or <tt>write</tt>. This parameter is intended to allow a developer to register a read/write application but also request read only access when appropriate.")
                                   @QueryParam("x_auth_access_type") final String x_auth_access_type) {
         //TODO: implement
     }

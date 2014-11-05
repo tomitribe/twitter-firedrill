@@ -7,6 +7,7 @@
  * of its trade secrets, irrespective of what has been deposited with the
  * U.S. Copyright Office.
  */
+
 package com.twitter;
 
 import com.tomitribe.tribestream.governance.api.ApplicationLimit;
@@ -37,7 +38,7 @@ public class SavedsearchesResource {
     @SeeAlso({@See(href = "/docs/api/1.1/get/saved_searches/show/%3Aid", value = "GET saved_searches/show/:id"), @See(href = "/docs/api/1.1/post/saved_searches/create", value = "POST saved_searches/create"), @See(href = "/docs/api/1.1/post/saved_searches/destroy/%3Aid", value = "POST saved_searches/destroy/:id"), @See(href = "/docs/api/1.1/get/search/tweets", value = "GET search/tweets")})
     @ApplicationLimit()
     @UserLimit(rate = @Rate(window = 15, unit = GovernanceUnit.MINUTES, limit = 15))
-    @Description("Returns the authenticated user&amp;#039;s saved search queries.")
+    @Description("Returns the authenticated user&#039;s saved search queries.")
     public Response getList() {
         //TODO: implement
         return null;

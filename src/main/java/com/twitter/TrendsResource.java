@@ -7,6 +7,7 @@
  * of its trade secrets, irrespective of what has been deposited with the
  * U.S. Copyright Office.
  */
+
 package com.twitter;
 
 import com.tomitribe.tribestream.governance.api.ApplicationLimit;
@@ -37,7 +38,7 @@ public class TrendsResource {
     @SeeAlso({@See(href = "/docs/api/1.1/get/trends/place", value = "GET trends/place"), @See(href = "/docs/api/1.1/get/trends/closest", value = "GET trends/closest")})
     @ApplicationLimit(rate = @Rate(window = 15, unit = GovernanceUnit.MINUTES, limit = 15))
     @UserLimit(rate = @Rate(window = 15, unit = GovernanceUnit.MINUTES, limit = 15))
-    @Description("Returns the locations that Twitter has trending topic information for. The response is an array of ")
+    @Description("Returns the locations that Twitter has trending topic information for. The response is an array of &quot;locations&quot; that encode the location&#039;s WOEID and some other human-readable information such as a canonical name and country the location belongs in. A WOEID is a Yahoo! Where On Earth ID.")
     public Response getAvailable() {
         //TODO: implement
         return null;
@@ -51,9 +52,9 @@ public class TrendsResource {
     @SeeAlso({@See(href = "/docs/api/1.1/get/trends/available", value = "GET trends/available"), @See(href = "/docs/api/1.1/get/trends/closest", value = "GET trends/closest")})
     @ApplicationLimit(rate = @Rate(window = 15, unit = GovernanceUnit.MINUTES, limit = 15))
     @UserLimit(rate = @Rate(window = 15, unit = GovernanceUnit.MINUTES, limit = 15))
-    @Description("Returns the locations that Twitter has trending topic information for, closest to a specified location. The response is an array of ")
-    public Response getClosest(@Description("If provided with a &lt;tt&gt;long&lt;/tt&gt; parameter the available trend locations will be sorted by distance, nearest to furthest, to the co-ordinate pair. The valid ranges for longitude is -180.0 to +180.0 (West is negative, East is positive) inclusive.")
-                               @PathParam("lat") final String lat, @Description("If provided with a &lt;tt&gt;lat&lt;/tt&gt; parameter the available trend locations will be sorted by distance, nearest to furthest, to the co-ordinate pair. The valid ranges for longitude is -180.0 to +180.0 (West is negative, East is positive) inclusive.")
+    @Description("Returns the locations that Twitter has trending topic information for, closest to a specified location. The response is an array of &quot;locations&quot; that encode the location&#039;s WOEID and some other human-readable information such as a canonical name and country the location belongs in. A WOEID is a Yahoo! Where On Earth ID.")
+    public Response getClosest(@Description("If provided with a <tt>long</tt> parameter the available trend locations will be sorted by distance, nearest to furthest, to the co-ordinate pair. The valid ranges for longitude is -180.0 to +180.0 (West is negative, East is positive) inclusive.")
+                               @PathParam("lat") final String lat, @Description("If provided with a <tt>lat</tt> parameter the available trend locations will be sorted by distance, nearest to furthest, to the co-ordinate pair. The valid ranges for longitude is -180.0 to +180.0 (West is negative, East is positive) inclusive.")
                                @PathParam("long") final String long_arg) {
         //TODO: implement
         return null;
@@ -67,9 +68,9 @@ public class TrendsResource {
     @SeeAlso({@See(href = "/docs/api/1.1/get/trends/available", value = "GET trends/available"), @See(href = "/docs/api/1.1/get/trends/closest", value = "GET trends/closest")})
     @ApplicationLimit(rate = @Rate(window = 15, unit = GovernanceUnit.MINUTES, limit = 15))
     @UserLimit(rate = @Rate(window = 15, unit = GovernanceUnit.MINUTES, limit = 15))
-    @Description("Returns the top 10 trending topics for a specific WOEID, if trending information is available for it. The response is an array of ")
-    public Response getPlace(@Description("The &lt;a href=&quot;http://developer.yahoo.com/geo/geoplanet/&quot; rel=&quot;external&quot;&gt;Yahoo! Where On Earth ID&lt;/a&gt; of the location to return trending information for. Global information is available by using &lt;tt&gt;1&lt;/tt&gt; as the &lt;tt&gt;WOEID&lt;/tt&gt;.")
-                             @PathParam("id") final int id, @Description("Setting this equal to &lt;tt&gt;hashtags&lt;/tt&gt; will remove all hashtags from the trends list.")
+    @Description("Returns the top 10 trending topics for a specific WOEID, if trending information is available for it. The response is an array of &quot;trend&quot; objects that encode the name of the trending topic, the query parameter that can be used to search for the topic on Twitter Search, and the Twitter Search URL. This information is cached for 5 minutes.")
+    public Response getPlace(@Description("The <a href=\"http://developer.yahoo.com/geo/geoplanet/\" rel=\"external\">Yahoo! Where On Earth ID</a> of the location to return trending information for. Global information is available by using <tt>1</tt> as the <tt>WOEID</tt>.")
+                             @PathParam("id") final int id, @Description("Setting this equal to <tt>hashtags</tt> will remove all hashtags from the trends list.")
                              @QueryParam("exclude") final String exclude) {
         //TODO: implement
         return null;

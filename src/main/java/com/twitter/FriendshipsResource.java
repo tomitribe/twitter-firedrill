@@ -7,6 +7,7 @@
  * of its trade secrets, irrespective of what has been deposited with the
  * U.S. Copyright Office.
  */
+
 package com.twitter;
 
 import com.tomitribe.tribestream.governance.api.ApplicationLimit;
@@ -41,8 +42,8 @@ public class FriendshipsResource {
     @ApplicationLimit()
     @UserLimit(rate = @Rate(window = 15, unit = GovernanceUnit.MINUTES, limit = 15))
     @Description("Returns a collection of numeric IDs for every user who has a pending request to follow the authenticating user.")
-    public Response getIncoming(@Description("Causes the list of connections to be broken into pages of no more than 5000 IDs at a time. The number of IDs returned is not guaranteed to be 5000 as suspended users are filtered out after connections are queried. If no cursor is provided, a value of ")
-                                @QueryParam("cursor") final String cursor, @Description("Many programming environments will not consume our Tweet ids due to their size. Provide this option to have ids returned as strings instead. More about ")
+    public Response getIncoming(@Description("Causes the list of connections to be broken into pages of no more than 5000 IDs at a time. The number of IDs returned is not guaranteed to be 5000 as suspended users are filtered out after connections are queried. If no cursor is provided, a value of <tt>-1</tt> will be assumed, which is the first \"page.\"<br /><br /> The response from the API will include a <tt>previous_cursor</tt> and <tt>next_cursor</tt> to allow paging back and forth. See <a href=\"https://dev.twitter.com/docs/misc/cursoring\">Using cursors to navigate collections</a> for more information.")
+                                @QueryParam("cursor") final String cursor, @Description("Many programming environments will not consume our Tweet ids due to their size. Provide this option to have ids returned as strings instead. More about <a href=\"https://dev.twitter.com/docs/twitter-ids-json-and-snowflake\">Twitter IDs, JSON and Snowflake</a>.")
                                 @QueryParam("stringify_ids") final Boolean stringify_ids) {
         //TODO: implement
         return null;
@@ -58,7 +59,7 @@ public class FriendshipsResource {
     @ApplicationLimit()
     @UserLimit(rate = @Rate(window = 15, unit = GovernanceUnit.MINUTES, limit = 15))
     @Description("Returns the relationships of the authenticating user to the comma-separated list of up to 100 screen_names or user_ids provided. Values for connections can be: following, following_requested, followed_by, none, blocking.")
-    public Response getLookup(@Description("A comma separated list of screen names, up to 100 are allowed in a")
+    public Response getLookup(@Description("A comma separated list of screen names, up to 100 are allowed in a single request.")
                               @QueryParam("screen_name") final String screen_name, @Description("A comma separated list of user IDs, up to 100 are allowed in a single request.")
                               @QueryParam("user_id") final String user_id) {
         //TODO: implement
@@ -74,8 +75,8 @@ public class FriendshipsResource {
     @SeeAlso({@See(href = "/docs/api/1.1/post/friendships/update", value = "POST friendships/update"), @See(href = "/docs/api/1.1/get/friendships/lookup", value = "GET friendships/lookup"), @See(href = "/docs/api/1.1/get/user", value = "GET user")})
     @ApplicationLimit()
     @UserLimit(rate = @Rate(window = 15, unit = GovernanceUnit.MINUTES, limit = 15))
-    @Description("Returns a collection of user_ids that the currently authenticated user does not want to receive retweets from. Use POST friendships/update to set the ")
-    public UsersType getNo_retweetsids(@Description("Many programming environments will not consume our ids due to their size. Provide this option to have ids returned as strings instead. Read more about ")
+    @Description("Returns a collection of user_ids that the currently authenticated user does not want to receive retweets from. Use POST friendships/update to set the &quot;no retweets&quot; status for a given user account on behalf of the current user.")
+    public UsersType getNo_retweetsids(@Description("Many programming environments will not consume our ids due to their size. Provide this option to have ids returned as strings instead. Read more about <a href=\"https://dev.twitter.com/docs/twitter-ids-json-and-snowflake\">Twitter IDs, JSON and Snowflake</a>. This parameter is especially important to use in Javascript environments.")
                                        @QueryParam("stringify_ids") final Boolean stringify_ids) {
         //TODO: implement
         return null;
@@ -91,8 +92,8 @@ public class FriendshipsResource {
     @ApplicationLimit()
     @UserLimit(rate = @Rate(window = 15, unit = GovernanceUnit.MINUTES, limit = 15))
     @Description("Returns a collection of numeric IDs for every protected user for whom the authenticating user has a pending follow request.")
-    public Response getOutgoing(@Description("Causes the list of connections to be broken into pages of no more than 5000 IDs at a time. The number of IDs returned is not guaranteed to be 5000 as suspended users are filtered out after connections are queried. If no cursor is provided, a value of ")
-                                @QueryParam("cursor") final String cursor, @Description("Many programming environments will not consume our Tweet ids due to their size. Provide this option to have ids returned as strings instead. More about ")
+    public Response getOutgoing(@Description("Causes the list of connections to be broken into pages of no more than 5000 IDs at a time. The number of IDs returned is not guaranteed to be 5000 as suspended users are filtered out after connections are queried. If no cursor is provided, a value of <tt>-1</tt> will be assumed, which is the first \"page.\"<br /><br /> The response from the API will include a <tt>previous_cursor</tt> and <tt>next_cursor</tt> to allow paging back and forth. See <a href=\"https://dev.twitter.com/docs/misc/cursoring\">Using cursors to navigate collections</a> for more information.")
+                                @QueryParam("cursor") final String cursor, @Description("Many programming environments will not consume our Tweet ids due to their size. Provide this option to have ids returned as strings instead. More about <a href=\"https://dev.twitter.com/docs/twitter-ids-json-and-snowflake\">Twitter IDs, JSON and Snowflake</a>.")
                                 @QueryParam("stringify_ids") final Boolean stringify_ids) {
         //TODO: implement
         return null;

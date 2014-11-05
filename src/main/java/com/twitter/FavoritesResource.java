@@ -7,6 +7,7 @@
  * of its trade secrets, irrespective of what has been deposited with the
  * U.S. Copyright Office.
  */
+
 package com.twitter;
 
 import com.tomitribe.tribestream.governance.api.ApplicationLimit;
@@ -47,7 +48,7 @@ public class FavoritesResource {
                               @QueryParam("count") final Integer count, @Description("Returns results with an ID greater than (that is, more recent than) the specified ID. There are limits to the number of Tweets which can be accessed through the API. If the limit of Tweets has occured since the since_id, the since_id will be forced to the oldest ID available.")
                               @QueryParam("since_id") final Integer since_id,
                               @Description("Returns results with an ID less than (that is, older than) or equal to the specified ID.")
-                              @QueryParam("max_id") final Integer max_id, @Description("The &lt;tt&gt;entities&lt;/tt&gt; node will be omitted when set to &lt;tt&gt;false&lt;/tt&gt;.")
+                              @QueryParam("max_id") final Integer max_id, @Description("The <tt>entities</tt> node will be omitted when set to <tt>false</tt>.")
                               @QueryParam("include_entities") final Boolean include_entities) {
         //TODO: implement
         return null;
@@ -61,7 +62,7 @@ public class FavoritesResource {
     @SeeAlso({@See(href = "/docs/api/1.1/post/favorites/destroy", value = "POST favorites/destroy"), @See(href = "/docs/api/1.1/get/favorites/list", value = "GET favorites/list")})
     @Description("Favorites the status specified in the ID parameter as the authenticating user. Returns the favorite status when successful. This process invoked by this method is asynchronous. The immediately returned status may not indicate the resultant favorited status of the tweet.")
     public TweetsType postCreate(@Description("The numerical ID of the desired status.")
-                                 @PathParam("id") final int id, @Description("The &lt;tt&gt;entities&lt;/tt&gt; node will be omitted when set to &lt;tt&gt;false&lt;/tt&gt;.")
+                                 @PathParam("id") final int id, @Description("The <tt>entities</tt> node will be omitted when set to <tt>false</tt>.")
                                  @QueryParam("include_entities") final Boolean include_entities) {
         //TODO: implement
         return null;
@@ -75,7 +76,7 @@ public class FavoritesResource {
     @SeeAlso({@See(href = "/docs/api/1.1/get/favorites/list", value = "GET favorites/list"), @See(href = "/docs/api/1.1/post/favorites/create", value = "POST favorites/create")})
     @Description("Un-favorites the status specified in the ID parameter as the authenticating user. Returns the un-favorited status in the requested format when successful. This process invoked by this method is asynchronous. The immediately returned status may not indicate the resultant favorited status of the tweet.")
     public TweetsType postDestroy(@Description("The numerical ID of the desired status.")
-                                  @PathParam("id") final int id, @Description("The &lt;tt&gt;entities&lt;/tt&gt; node will be omitted when set to &lt;tt&gt;false&lt;/tt&gt;.")
+                                  @PathParam("id") final int id, @Description("The <tt>entities</tt> node will be omitted when set to <tt>false</tt>.")
                                   @QueryParam("include_entities") final Boolean include_entities) {
         //TODO: implement
         return null;

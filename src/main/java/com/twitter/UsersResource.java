@@ -7,6 +7,7 @@
  * of its trade secrets, irrespective of what has been deposited with the
  * U.S. Copyright Office.
  */
+
 package com.twitter;
 
 import com.tomitribe.tribestream.governance.api.ApplicationLimit;
@@ -41,11 +42,11 @@ public class UsersResource {
     @SeeAlso({@See(href = "/docs/api/1.1/get/users/lookup", value = "GET users/lookup"), @See(href = "/docs/api/1.1/get/users/contributors", value = "GET users/contributors")})
     @ApplicationLimit()
     @UserLimit(rate = @Rate(window = 15, unit = GovernanceUnit.MINUTES, limit = 15))
-    @Description("Returns a collection of users that the specified user can &amp;quot;contribute&amp;quot; to.")
+    @Description("Returns a collection of users that the specified user can &quot;contribute&quot; to.")
     public UsersType getContributees(@Description("The ID of the user for whom to return results for. Helpful for disambiguating when a valid user ID is also a valid screen name.")
                                      @QueryParam("user_id") final String user_id, @Description("The screen name of the user for whom to return results for.")
-                                     @QueryParam("screen_name") final String screen_name, @Description("The &lt;tt&gt;entities&lt;/tt&gt; node will be disincluded when set to &lt;tt&gt;false&lt;/tt&gt;.")
-                                     @QueryParam("include_entities") final Boolean include_entities, @Description("When set to either &lt;tt&gt;true&lt;/tt&gt;, &lt;tt&gt;t&lt;/tt&gt; or &lt;tt&gt;1&lt;/tt&gt; statuses will not be included in the returned user objects.")
+                                     @QueryParam("screen_name") final String screen_name, @Description("The <tt>entities</tt> node will be disincluded when set to <tt>false</tt>.")
+                                     @QueryParam("include_entities") final Boolean include_entities, @Description("When set to either <tt>true</tt>, <tt>t</tt> or <tt>1</tt> statuses will not be included in the returned user objects.")
                                      @QueryParam("skip_status") final String skip_status) {
         //TODO: implement
         return null;
@@ -63,8 +64,8 @@ public class UsersResource {
     @Description("Returns a collection of users who can contribute to the specified account.")
     public UsersType getContributors(@Description("The ID of the user for whom to return results for.")
                                      @QueryParam("user_id") final String user_id, @Description("The screen name of the user for whom to return results for.")
-                                     @QueryParam("screen_name") final String screen_name, @Description("The &lt;tt&gt;entities&lt;/tt&gt; node will be disincluded when set to &lt;tt&gt;false&lt;/tt&gt;.")
-                                     @QueryParam("include_entities") final Boolean include_entities, @Description("When set to either &lt;tt&gt;true&lt;/tt&gt;, &lt;tt&gt;t&lt;/tt&gt; or &lt;tt&gt;1&lt;/tt&gt; statuses will not be included in the returned user objects.")
+                                     @QueryParam("screen_name") final String screen_name, @Description("The <tt>entities</tt> node will be disincluded when set to <tt>false</tt>.")
+                                     @QueryParam("include_entities") final Boolean include_entities, @Description("When set to either <tt>true</tt>, <tt>t</tt> or <tt>1</tt> statuses will not be included in the returned user objects.")
                                      @QueryParam("skip_status") final String skip_status) {
         //TODO: implement
         return null;
@@ -82,7 +83,7 @@ public class UsersResource {
     @Description("Returns fully-hydrated user objects for up to 100 users per request, as specified by comma-separated values passed to the user_id and/or screen_name parameters.")
     public UsersType getLookup(@Description("A comma separated list of screen names, up to 100 are allowed in a single request. You are strongly encouraged to use a POST for larger (up to 100 screen names) requests.")
                                @QueryParam("screen_name") final String screen_name, @Description("A comma separated list of user IDs, up to 100 are allowed in a single request. You are strongly encouraged to use a POST for larger requests.")
-                               @QueryParam("user_id") final String user_id, @Description("The &lt;tt&gt;entities&lt;/tt&gt; node that may appear within embedded statuses will be disincluded when set to &lt;tt&gt;false&lt;/tt&gt;.")
+                               @QueryParam("user_id") final String user_id, @Description("The <tt>entities</tt> node that may appear within embedded statuses will be disincluded when set to <tt>false</tt>.")
                                @QueryParam("include_entities") final Boolean include_entities) {
         //TODO: implement
         return null;
@@ -97,8 +98,8 @@ public class UsersResource {
     @SeeAlso({@See(href = "/docs/api/1.1/post/account/remove_profile_banner", value = "POST account/remove_profile_banner"), @See(href = "/docs/api/1.1/post/account/update_profile_banner", value = "POST account/update_profile_banner"), @See(href = "/docs/user-profile-images-and-banners", value = "User Profile Images and Banners")})
     @ApplicationLimit()
     @UserLimit(rate = @Rate(window = 15, unit = GovernanceUnit.MINUTES, limit = 180))
-    @Description("Returns a map of the available size variations of the specified user")
-    public Response getProfile_banner(@Description("The ID of the user for whom to return results for. Helpful for disambiguating when a val")
+    @Description("Returns a map of the available size variations of the specified user&#039;s profile banner. If the user has not uploaded a profile banner, a HTTP 404 will be served instead. This method can be used instead of string manipulation on the profile_banner_url returned in user objects as described in User Profile Images and Banners.")
+    public Response getProfile_banner(@Description("The ID of the user for whom to return results for. Helpful for disambiguating when a valid user ID is also a valid screen name.")
                                       @QueryParam("user_id") final Integer user_id, @Description("The screen name of the user for whom to return results for. Helpful for disambiguating when a valid screen name is also a user ID.")
                                       @QueryParam("screen_name") final String screen_name) {
         //TODO: implement
@@ -118,7 +119,7 @@ public class UsersResource {
     public UsersType getSearch(@Description("The search query to run against people search.")
                                @PathParam("q") final String q, @Description("Specifies the page of results to retrieve.")
                                @QueryParam("page") final Integer page, @Description("The number of potential user results to retrieve per page. This value has a maximum of 20.")
-                               @QueryParam("count") final Integer count, @Description("The &lt;tt&gt;entities&lt;/tt&gt; node will be disincluded from embedded tweet objects when set to &lt;tt&gt;false&lt;/tt&gt;.")
+                               @QueryParam("count") final Integer count, @Description("The <tt>entities</tt> node will be disincluded from embedded tweet objects when set to <tt>false</tt>.")
                                @QueryParam("include_entities") final Boolean include_entities) {
         //TODO: implement
         return null;
@@ -133,10 +134,10 @@ public class UsersResource {
     @SeeAlso({@See(href = "/docs/api/1.1/get/friends/ids", value = "GET friends/ids"), @See(href = "/docs/api/1.1/get/followers/ids", value = "GET followers/ids"), @See(href = "/docs/api/1.1/get/users/lookup", value = "GET users/lookup"), @See(href = "/docs/api/1.1/get/users/search", value = "GET users/search"), @See(href = "/docs/user-profile-images-and-banners", value = "User Profile Images and Banners")})
     @ApplicationLimit(rate = @Rate(window = 15, unit = GovernanceUnit.MINUTES, limit = 180))
     @UserLimit(rate = @Rate(window = 15, unit = GovernanceUnit.MINUTES, limit = 180))
-    @Description("Returns a variety of information about the user specified by the required user_id or screen_name parameter. The author")
+    @Description("Returns a variety of information about the user specified by the required user_id or screen_name parameter. The author&#039;s most recent Tweet will be returned inline when possible.")
     public UsersType getShow(@Description("The ID of the user for whom to return results for. Either an id or screen_name is required for this method.")
                              @PathParam("user_id") final int user_id, @Description("The screen name of the user for whom to return results for. Either a id or screen_name is required for this method.")
-                             @PathParam("screen_name") final String screen_name, @Description("The &lt;tt&gt;entities&lt;/tt&gt; node will be disincluded when set to &lt;tt&gt;false&lt;/tt&gt;.")
+                             @PathParam("screen_name") final String screen_name, @Description("The <tt>entities</tt> node will be disincluded when set to <tt>false</tt>.")
                              @QueryParam("include_entities") final Boolean include_entities) {
         //TODO: implement
         return null;
@@ -149,8 +150,8 @@ public class UsersResource {
     @ApiVersion({"1.1"})
     @Tag({"finding users"})
     @SeeAlso({@See(href = "/docs/api/1.1/get/users/suggestions/%3Aslug", value = "GET users/suggestions/:slug"), @See(href = "/docs/api/1.1/get/users/suggestions/%3Aslug/members", value = "GET users/suggestions/:slug/members")})
-    @Description("Access to Twitter&amp;#039;s suggested user list. This returns the list of suggested user categories. The category can be used in GET users/suggestions/:slug to get the users in that category.")
-    public Response getSuggestions(@Description("Restricts the suggested categories to the requested language. The language must be specified by the appropriate two letter ISO 639-1 representation. Currently supported languages are provided by the ")
+    @Description("Access to Twitter&#039;s suggested user list. This returns the list of suggested user categories. The category can be used in GET users/suggestions/:slug to get the users in that category.")
+    public Response getSuggestions(@Description("Restricts the suggested categories to the requested language. The language must be specified by the appropriate two letter ISO 639-1 representation. Currently supported languages are provided by the <a href=\"https://dev.twitter.com/docs/api/1.1/get/help/languages\">GET help/languages</a> API request. Unsupported language codes will receive English (en) results. If you use <tt>lang</tt> in this request, ensure you also include it when requesting the <a href=\"https://dev.twitter.com/docs/api/1.1/get/users/suggestions/%3Aslug\">GET users/suggestions/:slug</a> list.")
                                    @QueryParam("lang") final String lang) {
         //TODO: implement
         return null;
@@ -167,7 +168,7 @@ public class UsersResource {
     @UserLimit(rate = @Rate(window = 15, unit = GovernanceUnit.MINUTES, limit = 15))
     @Description("Access the users in a given category of the Twitter suggested user list. It is recommended that applications cache this data for no more than one hour.")
     public Response getSuggestionsslug(@Description("The short name of list or a category")
-                                       @PathParam("slug") final String slug, @Description("Restricts the suggested categories to the requested language. The language must be specified by the appropriate two letter ISO 639-1 representation. Currently supported languages are provided by the ")
+                                       @PathParam("slug") final String slug, @Description("Restricts the suggested categories to the requested language. The language must be specified by the appropriate two letter ISO 639-1 representation. Currently supported languages are provided by the <a href=\"https://dev.twitter.com/docs/api/1.1/get/help/languages\">GET help/languages</a> API request. Unsupported language codes will receive English (en) results. If you use <tt>lang</tt> in this request, ensure you also include it when requesting the <a href=\"https://dev.twitter.com/docs/api/1.1/get/users/suggestions/%3Aslug\" class=\"active\">GET users/suggestions/:slug</a> list.")
                                        @QueryParam("lang") final String lang) {
         //TODO: implement
         return null;
