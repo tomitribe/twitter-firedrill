@@ -10,7 +10,6 @@
 
 package com.twitter;
 
-import com.tomitribe.tribestream.governance.api.ApplicationLimit;
 import com.tomitribe.tribestream.governance.api.GovernanceUnit;
 import com.tomitribe.tribestream.governance.api.Rate;
 import com.tomitribe.tribestream.governance.api.UserLimit;
@@ -39,7 +38,6 @@ public class AccountResource {
     @Category({"account"})
     @ApiVersion({"1.1"})
     @See(href = "/docs/api/1.1/get/account/settings", value = "GET account/settings")
-    @ApplicationLimit()
     @UserLimit(rate = @Rate(window = 15, unit = GovernanceUnit.MINUTES, limit = 15))
     @Description("Returns settings (including current trend, geo and sleep time information) for the authenticating user.")
     public Response getSettings() {
@@ -53,7 +51,6 @@ public class AccountResource {
     @Category({"account"})
     @ApiVersion({"1.1"})
     @See(href = "/docs/api/1.1/get/account/settings", value = "GET account/settings")
-    @ApplicationLimit()
     @UserLimit(rate = @Rate(window = 15, unit = GovernanceUnit.MINUTES, limit = 15))
     @Description("Returns settings (including current trend, geo and sleep time information) for the authenticating user.")
     public Response postSettings(@Description("The Yahoo! Where On Earth ID to use as the user's default trend location. Global information is available by using 1 as the WOEID. The woeid must be one of the locations returned by <a href=\"https://dev.twitter.com/docs/api/1/get/trends/available\">GET trends/available</a>.")
@@ -74,7 +71,6 @@ public class AccountResource {
     @Category({"account"})
     @ApiVersion({"1.1"})
     @See(href = "/docs/api/1.1/get/account/settings", value = "GET account/settings")
-    @ApplicationLimit()
     @UserLimit(rate = @Rate(window = 15, unit = GovernanceUnit.MINUTES, limit = 15))
     @Description("Returns an HTTP 200 OK response code and a representation of the requesting user if authentication was successful; returns a 401 status code and an error message if not. Use this method to test if supplied user credentials are valid.")
     public UsersType getVerify_credentials(@Description("The <tt>entities</tt> node will not be included when set to <tt>false</tt>.")

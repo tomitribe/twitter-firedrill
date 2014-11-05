@@ -10,7 +10,6 @@
 
 package com.twitter;
 
-import com.tomitribe.tribestream.governance.api.ApplicationLimit;
 import com.tomitribe.tribestream.governance.api.GovernanceUnit;
 import com.tomitribe.tribestream.governance.api.Rate;
 import com.tomitribe.tribestream.governance.api.UserLimit;
@@ -36,7 +35,6 @@ public class BlocksResource {
     @Category({"blocks"})
     @ApiVersion({"1.1"})
     @See(href = "/docs/api/1.1/get/blocks/list", value = "GET blocks/list")
-    @ApplicationLimit()
     @UserLimit(rate = @Rate(window = 15, unit = GovernanceUnit.MINUTES, limit = 15))
     @Description("Returns an array of numeric user ids the authenticating user is blocking. Important On October 15, 2012 this method will become cursored by default, altering the default response format. See Using cursors to navigate collections for more details on how cursoring works.")
     public Response getIds(@Description("Many programming environments will not consume our ids due to their size. Provide this option to have ids returned as strings instead. Read more about <a href=\"https://dev.twitter.com/docs/twitter-ids-json-and-snowflake\">Twitter IDs, JSON and Snowflake</a>.")
@@ -52,7 +50,6 @@ public class BlocksResource {
     @Category({"blocks"})
     @ApiVersion({"1.1"})
     @SeeAlso({@See(href = "/docs/api/1.1/get/blocks/ids", value = "GET blocks/ids"), @See(href = "/docs/misc/cursoring", value = "Using cursors to navigate collections")})
-    @ApplicationLimit()
     @UserLimit(rate = @Rate(window = 15, unit = GovernanceUnit.MINUTES, limit = 15))
     @Description("Returns a collection of user objects that the authenticating user is blocking. Important On October 15, 2012 this method will become cursored by default, altering the default response format. See Using cursors to navigate collections for more details on how cursoring works.")
     public Response getList(@Description("The <tt>entities</tt> node will not be included when set to <tt>false</tt>.")

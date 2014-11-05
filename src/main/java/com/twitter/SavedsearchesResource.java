@@ -10,7 +10,6 @@
 
 package com.twitter;
 
-import com.tomitribe.tribestream.governance.api.ApplicationLimit;
 import com.tomitribe.tribestream.governance.api.GovernanceUnit;
 import com.tomitribe.tribestream.governance.api.Rate;
 import com.tomitribe.tribestream.governance.api.UserLimit;
@@ -36,7 +35,6 @@ public class SavedsearchesResource {
     @Category({"saved_searches"})
     @ApiVersion({"1.1"})
     @SeeAlso({@See(href = "/docs/api/1.1/get/saved_searches/show/%3Aid", value = "GET saved_searches/show/:id"), @See(href = "/docs/api/1.1/post/saved_searches/create", value = "POST saved_searches/create"), @See(href = "/docs/api/1.1/post/saved_searches/destroy/%3Aid", value = "POST saved_searches/destroy/:id"), @See(href = "/docs/api/1.1/get/search/tweets", value = "GET search/tweets")})
-    @ApplicationLimit()
     @UserLimit(rate = @Rate(window = 15, unit = GovernanceUnit.MINUTES, limit = 15))
     @Description("Returns the authenticated user&#039;s saved search queries.")
     public Response getList() {
@@ -50,7 +48,6 @@ public class SavedsearchesResource {
     @Category({"saved_searches"})
     @ApiVersion({"1.1"})
     @SeeAlso({@See(href = "/docs/api/1.1/get/saved_searches/list", value = "GET saved_searches/list"), @See(href = "/docs/api/1.1/post/saved_searches/destroy/%3Aid", value = "POST saved_searches/destroy/:id"), @See(href = "/docs/api/1.1/post/saved_searches/create", value = "POST saved_searches/create"), @See(href = "/docs/api/1.1/get/search/tweets", value = "GET search/tweets")})
-    @ApplicationLimit()
     @UserLimit(rate = @Rate(window = 15, unit = GovernanceUnit.MINUTES, limit = 15))
     @Description("Retrieve the information for the saved search represented by the given id. The authenticating user must be the owner of saved search ID being requested.")
     public Response getShowid(@Description("The ID of the saved search.")

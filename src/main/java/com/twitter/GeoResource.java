@@ -10,7 +10,6 @@
 
 package com.twitter;
 
-import com.tomitribe.tribestream.governance.api.ApplicationLimit;
 import com.tomitribe.tribestream.governance.api.GovernanceUnit;
 import com.tomitribe.tribestream.governance.api.Rate;
 import com.tomitribe.tribestream.governance.api.UserLimit;
@@ -38,7 +37,6 @@ public class GeoResource {
     @Category({"geo"})
     @ApiVersion({"1.1"})
     @SeeAlso({@See(href = "/docs/api/1.1/post/geo/place", value = "POST geo/place"), @See(href = "/docs/api/1.1/get/geo/similar_places", value = "GET geo/similar_places"), @See(href = "/docs/finding-tweets-about-places", value = "Finding Tweets about Places"), @See(href = "/docs/about-geo-place-attributes", value = "About Geo Place Attributes")})
-    @ApplicationLimit()
     @UserLimit(rate = @Rate(window = 15, unit = GovernanceUnit.MINUTES, limit = 15))
     @Description("Returns all the information about a known place.")
     public PlacesType getIdplace_id(@Description("A place in the world. These IDs can be retrieved from geo/reverse_geocode.")
@@ -53,7 +51,6 @@ public class GeoResource {
     @Category({"geo"})
     @ApiVersion({"1.1"})
     @SeeAlso({@See(href = "/docs/api/1.1/get/geo/id/%3Aplace_id", value = "GET geo/id/:place_id"), @See(href = "/docs/api/1.1/get/geo/search", value = "GET geo/search"), @See(href = "/docs/api/1.1/get/geo/similar_places", value = "GET geo/similar_places"), @See(href = "/docs/finding-tweets-about-places", value = "Finding Tweets about Places"), @See(href = "/docs/about-geo-place-attributes", value = "About Geo Place Attributes")})
-    @ApplicationLimit()
     @UserLimit(rate = @Rate(window = 15, unit = GovernanceUnit.MINUTES, limit = 15))
     @Description("Given a latitude and a longitude, searches for up to 20 places that can be used as a place_id when updating a status. This request is an informative call and will deliver generalized results about geography.")
     public PlacesType getReverse_geocode(@Description("The latitude to search around. This parameter will be ignored unless it is inside the range -90.0 to +90.0 (North is positive) inclusive. It will also be ignored if there isn't a corresponding <tt>long</tt> parameter.")
@@ -74,7 +71,6 @@ public class GeoResource {
     @Category({"geo"})
     @ApiVersion({"1.1"})
     @SeeAlso({@See(href = "/docs/api/1.1/get/geo/id/%3Aplace_id", value = "GET geo/id/:place_id"), @See(href = "/docs/api/1.1/get/geo/reverse_geocode", value = "GET geo/reverse_geocode"), @See(href = "/docs/finding-tweets-about-places", value = "Finding Tweets about Places"), @See(href = "/docs/about-geo-place-attributes", value = "About Geo Place Attributes")})
-    @ApplicationLimit()
     @UserLimit(rate = @Rate(window = 15, unit = GovernanceUnit.MINUTES, limit = 15))
     @Description("Search for places that can be attached to a statuses/update. Given a latitude and a longitude pair, an IP address, or a name, this request will return a list of all the valid places that can be used as the place_id when updating a status.")
     public PlacesType getSearch(@Description("The latitude to search around. This parameter will be ignored unless it is inside the range -90.0 to +90.0 (North is positive) inclusive. It will also be ignored if there isn't a corresponding <tt>long</tt> parameter.")
@@ -101,7 +97,6 @@ public class GeoResource {
     @ApiVersion({"1.1"})
     @Tag({"Places &amp;amp; Geo"})
     @SeeAlso({@See(href = "/docs/finding-tweets-about-places", value = "Finding Tweets about Places"), @See(href = "/docs/api/1.1/get/geo/id/%3Aplace_id", value = "GET geo/id/:place_id"), @See(href = "/docs/api/1.1/get/geo/search", value = "GET geo/search"), @See(href = "/docs/api/1.1/post/geo/place", value = "POST geo/place"), @See(href = "/docs/about-geo-place-attributes", value = "About Geo Place Attributes")})
-    @ApplicationLimit()
     @UserLimit(rate = @Rate(window = 15, unit = GovernanceUnit.MINUTES, limit = 15))
     @Description("Locates places near the given coordinates which are similar in name.")
     public PlacesType getSimilar_places(@Description("The latitude to search around. This parameter will be ignored unless it is inside the range -90.0 to +90.0 (North is positive) inclusive. It will also be ignored if there isn't a corresponding <tt>long</tt> parameter.")
