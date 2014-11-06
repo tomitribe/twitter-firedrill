@@ -1,0 +1,59 @@
+= Tribestream Twitter API Example
+Jonathan Gallimore
+v0.1, 2014-11-06 12pm
+:title-logo: images/tomitribe_logo.png
+// Settings:
+:compat-mode:
+:experimental:
+:icons: font
+:listing-caption: Listing
+:sectnums:
+:toc:
+:toclevels: 3
+ifdef::backend-pdf[]
+:pagenums:
+:pygments-style: bw
+:source-highlighter: pygments
+endif::[]
+
+[abstract]
+
+== Introduction
+
+== Tribestream documentation annotations
+
+== WADLx
+
+== Documentation Annotations
+                                                                
+=== @ApiVersion
+
+=== @Category
+
+=== @Description
+
+=== @Descriptions
+                                                          
+=== @Required
+
+=== @See
+
+=== @SeeAlso
+
+=== @Status
+
+=== @StatusType
+
+=== @Tag
+
+== Governance Annotations
+
+=== @ApplicationLimit
+
+=== @Concurrent
+
+=== @GovernanceUnit
+
+=== @Rate
+
+=== @UserLimit
