@@ -25,20 +25,136 @@ endif::[]
 == WADLx
 
 == Documentation Annotations
-                                                                
+
+Tribestream provides a number of annotations that a service developer can add to
+the classes and methods in their application to describe its functionality, the 
+type of output it provides, and more information about the parameters the service
+makes availble to clients.
+
+At runtime, Tribestream will use these annotations to generate beautiful documentation
+for your application.
+
+Here are all the annotations available:
+
 === @ApiVersion
 
 === @Category
 
 === @Description
 
+The @Description allows you to provide a free-form textual description of what the
+resource actually does. This text is rendered as supplied in the documentation.
+
+For example, a method with the following annotations:
+
+----
+    @POST
+    @Produces("application/json")
+    @Path("/create")
+    @Description("Blocks the specified user from following the authenticating 
+    	user. In addition the blocked user will not show in the authenticating 
+    	users mentions or timeline (unless retweeted by another user). If a 
+    	follow or friend relationship exists it is destroyed.")
+    public Response postCreate(/* parameters here */) {
+    	// TODO: implement this method
+    
+    }
+----
+
+will render render using the text on the @Description annotation as shown below:
+
+image::images/description_1.png[Resource Description]
+
 === @Descriptions
+
+The @Descriptions annotation allows you to provide a number of @Description 
+annotations with different values for a resource. For example, you may wish to 
+provide different descriptions for different languages.
+
+----
+    @POST
+    @Produces("application/json")
+    @Path("/create")
+    @Descriptions({
+            @Description(lang = "en", value = "Blocks the specified user from following the authenticating user."),
+            @Description(lang = "fr", value = "Bloque l' utilisateur spécifié de suivre l'utilisateur d'authentification .")
+    })
+    public Response postCreate(/* parameters here */) {
+    	// TODO: implement this method
+    
+    }
+----
+
+The text from each of the @Description annotations will be show in the documentation,
+in the order that the @Description annotations are specified on @Descriptions.
+
+image::images/descriptions_1.png[Multi-language Descriptions]
                                                           
 === @Required
 
+@Required is specified on a parameter of a service to mark it as mandatory.
+
+In the example below, the user_id parameter is mandatory, while screen_name is
+optional. 
+
+----
+    @POST
+    @Produces("application/json")
+    @Path("/create")
+    public Response postCreate(@Description("The screen name of the potentially blocked user.")
+                               @QueryParam("screen_name") final String screen_name, @Description("The ID of the potentially blocked user.")
+                               @QueryParam("user_id") @Required final Integer user_id) {
+        //TODO: implement
+        return null;
+    }
+----
+
+Optional paramaters are highlighted in the documentation.
+
+image::images/required_1.png[Required and optional paramaters]
+
 === @See
 
+The @See annotation is much like the @see Javadoc annotation. It provideds a link
+to other documentation or resources that may be relevant to the resource.
+
+Each @See annotation requires a href (the destination of the link) and value
+(the text that will displayed for the link).
+
+----
+    @GET
+    @Produces("application/json")
+    @Path("/ids")
+    @See(href = "/docs/api/1.1/get/blocks/list", value = "GET blocks/list")
+    public Response getIds(/* parameters here */) {
+        //TODO: implement
+        return null;
+    }
+----
+
+image::images/see_1.png[See link]
+
 === @SeeAlso
+
+Similar to the @Descriptions annotation, @SeeAlso allow multiples links to other
+documentation or resources to be added to a resource. Each @See link shown in the
+documentation in the order they are specified on the @SeeAlso annotation.
+
+----
+    @GET
+    @Produces("application/json")
+    @Path("/list")
+    @SeeAlso({
+    	@See(href = "/docs/api/1.1/get/blocks/ids", value = "GET blocks/ids"), 
+    	@See(href = "/docs/misc/cursoring", value = "Using cursors to navigate collections")
+    })
+    public Response getList(/* parameters here */) {
+        //TODO: implement
+        return null;
+    }
+----
+
+image::images/seealso_1.png[Multiple See links]
 
 === @Status
 
