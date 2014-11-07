@@ -38,7 +38,40 @@ Here are all the annotations available:
 
 === @ApiVersion
 
+APIs may introduce new methods or deprecate old ones as new versions are released.
+Service developers can use the @ApiVersion annotation to indicate which versions
+of the API the method is available in. API versions are specified as a String 
+array on the annotation.
+
+----
+    @GET 
+    @Produces("application/json")
+    @Path("/configuration")
+    @ApiVersion({"1.1"})
+    @Description("Returns the current configuration used by Twitter including twitter.com slugs which are not usernames, maximum photo resolutions, and t.co URL lengths.")
+    public Response getConfiguration() {
+        //TODO: implementation
+    }
+----
+
 === @Category
+
+Specifies the categories that the resource appears in. A resource may belong to
+more than one category, by specifying all the categories the resource belongs to
+in the value attribute of the annotation. For example, a resource annotated with
+{@code @Category({ "account", "user" }}, will appear in both the account and user
+categories.
+
+----
+    @GET
+    @Produces("application/json")
+    @Path("/settings")
+    @Category({"account"})
+    public Response getSettings() {
+        //TODO: implementation
+        
+    }
+----
 
 === @Description
 
@@ -158,9 +191,54 @@ image::images/seealso_1.png[Multiple See links]
 
 === @Status
 
-=== @StatusType
+Indicates the current status of the resource. For example, if the signature of
+this resource has not yet been finalized, the developer of the resource may wish
+to indicate the resource as being in the draft status so the consumer of the API
+is aware it may change.
+
+Available statuses are:
+
+[cols="2*", options="header"] 
+|===
+| Status| Description
+
+|PROPOSAL
+|A proposed service. May disappear or changed in the future.
+
+|STUB
+|A dummy implementation of the service. This may be provided for testing purposes.
+
+|DRAFT
+|A non-final version of the service. The definition may change in the future.
+
+|TEST
+|The service is available for testing purposes, and may not return live data.
+
+|VALIDATION
+|The service has been made available for validation purposes.
+
+|ACCEPTED
+|The service is stable and availble for consumption. 
+
+|CONFIDENTIAL
+|Not for public consumption, and should not be shared with other parties.
+|===
 
 === @Tag
+
+The @Tag annotation allows the developer to provide searchable keywords for the service.
+Keywords are specified as a String array on the annotation.
+
+----
+    @GET
+    @Produces("application/json")
+    @Path("/lookup")
+    @Tag({"Bulk Operations", "finding users"})
+    @Description("Returns fully-hydrated user objects for up to 100 users per request, as specified by comma-separated values passed to the user_id and/or screen_name parameters.")
+    public UsersType getLookup(/* parameters here */) {
+        //TODO: implementation
+    }
+----
 
 == Governance Annotations
 

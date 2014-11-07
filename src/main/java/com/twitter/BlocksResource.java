@@ -16,6 +16,8 @@ import com.tomitribe.tribestream.governance.api.UserLimit;
 import com.tomitribe.wadlx.api.ApiVersion;
 import com.tomitribe.wadlx.api.Category;
 import com.tomitribe.wadlx.api.Description;
+import com.tomitribe.wadlx.api.Descriptions;
+import com.tomitribe.wadlx.api.Required;
 import com.tomitribe.wadlx.api.See;
 import com.tomitribe.wadlx.api.SeeAlso;
 
@@ -44,6 +46,13 @@ public class BlocksResource {
         return null;
     }
 
+    /**
+     * @see
+     * @param include_entities
+     * @param skip_status
+     * @param cursor
+     * @return
+     */
     @GET
     @Produces("application/json")
     @Path("/list")
@@ -65,12 +74,13 @@ public class BlocksResource {
     @Path("/create")
     @Category({"blocks"})
     @ApiVersion({"1.1"})
-    @Description("Blocks the specified user from following the authenticating user. In addition the blocked user will not show in the authenticating users mentions or timeline (unless retweeted by another user). If a follow or friend relationship exists it is destroyed.")
-    public Response postCreate(@Description("The screen name of the potentially blocked user. Helpful for disambiguating when a valid screen name is also a user ID.")
-                               @QueryParam("screen_name") final String screen_name, @Description("The ID of the potentially blocked user. Helpful for disambiguating when a valid user ID is also a valid screen name.")
-                               @QueryParam("user_id") final Integer user_id, @Description("The <tt>entities</tt> node will not be included when set to <tt>false</tt>.")
-                               @QueryParam("include_entities") final Boolean include_entities, @Description("When set to either <tt>true</tt>, <tt>t</tt> or <tt>1</tt> statuses will not be included in the returned user objects.")
-                               @QueryParam("skip_status") final String skip_status) {
+    @Descriptions({
+            @Description(lang = "en", value = "Blocks the specified user from following the authenticating user."),
+            @Description(lang = "en", value = "Bloque l' utilisateur spécifié de suivre l'utilisateur d'authentification .")
+    })
+    public Response postCreate(@Description("The screen name of the potentially blocked user.")
+                               @QueryParam("screen_name") final String screen_name, @Description("The ID of the potentially blocked user.")
+                               @QueryParam("user_id") @Required final Integer user_id) {
         //TODO: implement
         return null;
     }
