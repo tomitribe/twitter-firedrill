@@ -17,8 +17,6 @@ import com.tomitribe.tribestream.governance.api.UserLimit;
 import com.tomitribe.wadlx.api.ApiVersion;
 import com.tomitribe.wadlx.api.Category;
 import com.tomitribe.wadlx.api.Description;
-import com.tomitribe.wadlx.api.See;
-import com.tomitribe.wadlx.api.SeeAlso;
 import com.tomitribe.wadlx.api.Tag;
 
 import javax.ws.rs.GET;
@@ -36,7 +34,6 @@ public class ApplicationResource {
     @Category({"application"})
     @ApiVersion({"1.1"})
     @Tag({"Rate Limits", "rate limiting"})
-    @SeeAlso({@See(href = "/docs/rate-limiting/1.1", value = "REST API Rate Limiting in v1.1"), @See(href = "/docs/auth/application-only-auth", value = "Application-only authentication")})
     @ApplicationLimit(rate = @Rate(window = 15, unit = GovernanceUnit.MINUTES, limit = 180))
     @UserLimit(rate = @Rate(window = 15, unit = GovernanceUnit.MINUTES, limit = 180))
     @Description("Returns the current rate limits for methods belonging to the specified resource families.")

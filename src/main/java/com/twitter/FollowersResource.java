@@ -36,7 +36,7 @@ public class FollowersResource {
     @Category({"followers"})
     @ApiVersion({"1.1"})
     @Tag({"Bulk Operations", "finding users"})
-    @SeeAlso({@See(href="/staging/apirest/endpoint/twitter/GET/friends/ids", value = "GET friends/ids"), @See(href="/staging/apirest/endpoint/twitter/GET/followers/list", value = "GET followers/list"), @See(href="/staging/apirest/endpoint/twitter/GET/friends/list", value = "GET friends/list"), @See(href = "/docs/misc/cursoring", value = "Using cursors to navigate collections")})
+    @SeeAlso({@See(href="/staging/apirest/endpoint/twitter/GET/friends/ids", value = "GET friends/ids"), @See(href="/staging/apirest/endpoint/twitter/GET/followers/list", value = "GET followers/list"), @See(href="/staging/apirest/endpoint/twitter/GET/friends/list", value = "GET friends/list")})
     @ApplicationLimit(rate = @Rate(window = 15, unit = GovernanceUnit.MINUTES, limit = 15))
     @UserLimit(rate = @Rate(window = 15, unit = GovernanceUnit.MINUTES, limit = 15))
     @Description("Returns a cursored collection of user IDs for every user following the specified user.")

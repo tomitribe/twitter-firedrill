@@ -58,7 +58,7 @@ public class BlocksResource {
     @Path("/list")
     @Category({"blocks"})
     @ApiVersion({"1.1"})
-    @SeeAlso({@See(href="/staging/apirest/endpoint/twitter/GET/blocks/ids", value = "GET blocks/ids"), @See(href = "/docs/misc/cursoring", value = "Using cursors to navigate collections")})
+    @SeeAlso({@See(href="/staging/apirest/endpoint/twitter/GET/blocks/ids", value = "GET blocks/ids")})
     @UserLimit(rate = @Rate(window = 15, unit = GovernanceUnit.MINUTES, limit = 15))
     @Description("Returns a collection of user objects that the authenticating user is blocking. Important On October 15, 2012 this method will become cursored by default, altering the default response format. See Using cursors to navigate collections for more details on how cursoring works.")
     public Response getList(@Description("The <tt>entities</tt> node will not be included when set to <tt>false</tt>.")

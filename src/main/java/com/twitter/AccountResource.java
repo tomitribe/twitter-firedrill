@@ -84,7 +84,7 @@ public class AccountResource {
     @Produces("application/json")
     @Path("/remove_profile_banner")
     @ApiVersion({"1.1"})
-    @SeeAlso({@See(href = "/docs/user-profile-images-and-banners", value = "User Profile Images and Banners"),
+    @SeeAlso({
             @See(href="/staging/apirest/endpoint/twitter/POST/account/update_profile_banner", value = "POST account/update_profile_banner"),
             @See(href="/staging/apirest/endpoint/twitter/GET/users/profile_banner", value = "GET users/profile_banner")})
     @Description("Removes the uploaded profile banner for the authenticating user. Returns HTTP 200 upon success.")
@@ -148,7 +148,7 @@ public class AccountResource {
     @Tag({"profile banner", "profiles"})
     @SeeAlso({@See(href="/staging/apirest/endpoint/twitter/POST/account/remove_profile_banner", value = "POST account/remove_profile_banner"),
             @See(href="/staging/apirest/endpoint/twitter/POST/account/update_profile_background_image", value = "POST account/update_profile_background_image"),
-            @See(href = "/docs/user-profile-images-and-banners", value = "User Profile Images and Banners")})
+            })
     @Description("Uploads a profile banner on behalf of the authenticating user. For best results, upload an")
     public Response postUpdate_profile_banner(@Description("The Base64-encoded or raw image data being uploaded as the user's new profile banner.")
                                               @PathParam("banner") final String banner, @Description("The width of the preferred section of the image being uploaded in pixels. Use with <tt>height</tt>, <tt>offset_left</tt>, and <tt>offset_top</tt> to select the desired region of the image to use.")
@@ -185,9 +185,7 @@ public class AccountResource {
     @Path("/update_profile_image")
     @Category({"account"})
     @ApiVersion({"1.1"})
-    @SeeAlso({
-            @See(href = "/docs/user-profile-images-and-banners", value = "User Profile Images and Banners"),
-            @See(href="/staging/apirest/endpoint/twitter/GET/users/lookup", value = "GET users/lookup")})
+    @SeeAlso({@See(href="/staging/apirest/endpoint/twitter/GET/users/lookup", value = "GET users/lookup")})
     @Description("Updates the authenticating user&#039;s profile image. Note that this method expects raw multipart data, not a URL to an image. This method asynchronously processes the uploaded file before updating the user&#039;s profile image URL.")
     public Response postUpdate_profile_image(@Description("The avatar image for the profile, base64-encoded. Must be a valid GIF, JPG, or PNG image of less than 700 kilobytes in size. Images with width larger than 500 pixels will be scaled down. Animated GIFs will be converted to a static GIF of the first frame, removing the animation.")
                                              @PathParam("image") final String image, @Description("The <tt>entities</tt> node will not be included when set to <tt>false</tt>.")
