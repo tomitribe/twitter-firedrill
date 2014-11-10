@@ -318,8 +318,8 @@ no attributes) is the same as not adding @ApplicationLimit at all.
     @Produces("application/json")
     @Path("/configuration")
     @ApplicationLimit(
-	    rate = @Rate(window = 15, unit = GovernanceUnit.MINUTES, limit = 15),
-		concurrent = @Concurrent(limit = 5)
+        rate = @Rate(window = 15, unit = GovernanceUnit.MINUTES, limit = 15),
+        concurrent = @Concurrent(limit = 5)
 	)
     public Response getConfiguration() {
         //TODO: implementation
@@ -334,15 +334,15 @@ period, with up to 5 calls happening simultaeneously.
 
 The @UserLimit annotation follows the same structure as @ApplicationLimit,
 but applies the rate and concurrent settings on a per-user basis. So if the 
-following annotation were applied:
+following annotations were applied:
 
 ----
     @GET
     @Produces("application/json")
     @Path("/configuration")
     @UserLimit(
-	    rate = @Rate(window = 15, unit = GovernanceUnit.MINUTES, limit = 15),
-		concurrent = @Concurrent(limit = 2)
+        rate = @Rate(window = 15, unit = GovernanceUnit.MINUTES, limit = 15),
+        concurrent = @Concurrent(limit = 2)
 	)
     public Response getConfiguration() {
         //TODO: implementation
