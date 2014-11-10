@@ -38,7 +38,7 @@ public class FavoritesResource {
     @Category({"favorites"})
     @ApiVersion({"1.1"})
     @Tag({"Favorites"})
-    @SeeAlso({@See(href = "/docs/working-with-timelines", value = "Working with Timelines"), @See(href="/staging/apirest/endpoint/twitter/POST/favorites/create", value = "POST favorites/create"), @See(href="/staging/apirest/endpoint/twitter/POST/favorites/destroy", value = "POST favorites/destroy")})
+    @SeeAlso({@See(href="/staging/apirest/endpoint/twitter/POST/favorites/create", value = "POST favorites/create"), @See(href="/staging/apirest/endpoint/twitter/POST/favorites/destroy", value = "POST favorites/destroy")})
     @ApplicationLimit(rate = @Rate(window = 15, unit = GovernanceUnit.MINUTES, limit = 15))
     @UserLimit(rate = @Rate(window = 15, unit = GovernanceUnit.MINUTES, limit = 15))
     @Description("Returns the 20 most recent Tweets favorited by the authenticating or specified user.")
