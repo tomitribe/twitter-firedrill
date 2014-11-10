@@ -29,7 +29,7 @@ public class Oauth2Resource {
     @Produces("application/json")
     @Path("/invalidate_token")
     @ApiVersion({"1.1"})
-    @SeeAlso({@See(href = "/docs/auth/application-only-auth", value = "Application-only authentication"), @See(href="post/oauth2/token", value = "POST oauth2/token")})
+    @SeeAlso({@See(href = "/docs/auth/application-only-auth", value = "Application-only authentication"), @See(href="/apirest/twitter/POST/oauth2/token", value = "POST oauth2/token")})
     @Description("Allows a registered application to revoke an issued OAuth 2 Bearer Token by presenting its client credentials. Once a Bearer Token has been invalidated, new creation attempts will yield a different Bearer Token and usage of the invalidated token will no longer be allowed. As with all API v1.1 methods, HTTPS is always required.")
     public Response postInvalidate_token(@Description("The value of the bearer token to revoke.")
                                          @PathParam("access_token") final String access_token) {
@@ -42,7 +42,7 @@ public class Oauth2Resource {
     @Path("/token")
     @ApiVersion({"1.1"})
     @Tag({"OAuth"})
-    @SeeAlso({@See(href = "/docs/auth/application-only-auth", value = "Application-only authentication"), @See(href = "/docs/rate-limiting/1.1", value = "REST API Rate Limiting in v1.1"), @See(href="post/oauth2/invalidate_token", value = "POST oauth2/invalidate_token")})
+    @SeeAlso({@See(href = "/docs/auth/application-only-auth", value = "Application-only authentication"), @See(href = "/docs/rate-limiting/1.1", value = "REST API Rate Limiting in v1.1"), @See(href="/apirest/twitter/POST/oauth2/invalidate_token", value = "POST oauth2/invalidate_token")})
     @Description("Allows a registered application to obtain an OAuth 2 Bearer Token, which can be used to make API requests on an application&#039;s own behalf, without a user context. This is called Application-only authentication. A Bearer Token may be invalidated using oauth2/invalidate_token.")
     public Response postToken(@Description("Specifies the type of grant being requested by the application. At this time, only <tt>client_credentials</tt> is allowed. See <a href=\"https://dev.twitter.com/docs/auth/application-only-auth\">Application-only authentication</a> for more information.")
                               @PathParam("grant_type") final String grant_type) {

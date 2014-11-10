@@ -37,7 +37,7 @@ public class SearchResource {
     @Category({"search"})
     @ApiVersion({"1.1"})
     @Tag({"Search", "finding tweets"})
-    @SeeAlso({@See(href="get/users/search", value = "GET users/search"), @See(href = "/docs/using-search", value = "Using the Twitter Search API"), @See(href="get/geo/search", value = "GET geo/search"), @See(href = "/docs/finding-tweets-about-places", value = "Finding Tweets about Places")})
+    @SeeAlso({@See(href="/apirest/twitter/GET/users/search", value = "GET users/search"), @See(href = "/docs/using-search", value = "Using the Twitter Search API"), @See(href="/apirest/twitter/GET/geo/search", value = "GET geo/search"), @See(href = "/docs/finding-tweets-about-places", value = "Finding Tweets about Places")})
     @ApplicationLimit(rate = @Rate(window = 15, unit = GovernanceUnit.MINUTES, limit = 450))
     @UserLimit(rate = @Rate(window = 15, unit = GovernanceUnit.MINUTES, limit = 180))
     @Description("Returns relevant tweets that match a specified query.")

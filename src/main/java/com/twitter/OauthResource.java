@@ -28,7 +28,12 @@ public class OauthResource {
     @GET
     @Path("/authenticate")
     @ApiVersion({"1", "1.1"})
-    @SeeAlso({@See(href = "/docs/auth/oauth", value = "OAuth"), @See(href = "/docs/auth", value = "Authentication &amp;amp; Authorization"), @See(href = "/docs/api/1/get/oauth/authorize", value = "GET oauth/authorize"), @See(href = "/docs/application-permission-model", value = "The Application Permission Model"), @See(href = "/docs/api/1/post/oauth/request_token", value = "POST oauth/request_token")})
+    @SeeAlso({
+            @See(href = "/docs/auth/oauth", value = "OAuth"),
+            @See(href = "/docs/auth", value = "Authentication &amp;amp; Authorization"),
+            @See(href = "/docs/api/1/get/oauth/authorize", value = "GET oauth/authorize"),
+            @See(href = "/docs/application-permission-model", value = "The Application Permission Model"),
+            @See(href = "/docs/api/1/post/oauth/request_token", value = "POST oauth/request_token")})
     @Description("Allows a Consumer application to use an OAuth request_token to request user authorization. This method is a replacement of Section 6.2 of the OAuth 1.0 authentication flow for applications using the callback authentication flow.")
     public void getAuthenticate(@Description("Forces the user to enter their credentials to ensure the correct users account is authorized.")
                                 @QueryParam("force_login") final Boolean force_login, @Description("Prefills the username input box of the OAuth login screen with the given value.")
@@ -39,7 +44,12 @@ public class OauthResource {
     @GET
     @Path("/authorize")
     @ApiVersion({"1", "1.1"})
-    @SeeAlso({@See(href = "/docs/api/1/post/oauth/request_token", value = "POST oauth/request_token"), @See(href = "/docs/api/1/post/oauth/access_token", value = "POST oauth/access_token"), @See(href = "/docs/api/1/get/oauth/authenticate", value = "GET oauth/authenticate"), @See(href = "/docs/auth", value = "Authentication &amp;amp; Authorization"), @See(href = "/docs/auth/authorizing-request", value = "Authorizing a request")})
+    @SeeAlso({
+            @See(href = "/docs/api/1/post/oauth/request_token", value = "POST oauth/request_token"),
+            @See(href = "/docs/api/1/post/oauth/access_token", value = "POST oauth/access_token"),
+            @See(href = "/docs/api/1/get/oauth/authenticate", value = "GET oauth/authenticate"),
+            @See(href = "/docs/auth", value = "Authentication &amp;amp; Authorization"),
+            @See(href = "/docs/auth/authorizing-request", value = "Authorizing a request")})
     @Description("Allows a Consumer application to use an OAuth Request Token to request user authorization. This method fulfills Section 6.2 of the OAuth 1.0 authentication flow. Desktop applications must use this method (and cannot use GET oauth/authenticate). Please use HTTPS for this method, and all other OAuth token negotiation steps.")
     public void getAuthorize(@Description("Forces the user to enter their credentials to ensure the correct users account is authorized.")
                              @QueryParam("force_login") final String force_login, @Description("Prefills the username input box of the OAuth login screen with the given value.")
@@ -51,7 +61,14 @@ public class OauthResource {
     @Path("/access_token")
     @ApiVersion({"1", "1.1"})
     @Tag({"OAuth"})
-    @SeeAlso({@See(href = "/docs/auth", value = "Authentication &amp;amp; Authorization"), @See(href = "/docs/api/1/post/oauth/request_token", value = "POST oauth/request_token"), @See(href = "/docs/api/1/get/oauth/authorize", value = "GET oauth/authorize"), @See(href = "/docs/oauth/xauth", value = "xAuth"), @See(href = "/docs/api/1/get/oauth/authenticate", value = "GET oauth/authenticate"), @See(href = "/docs/security/best-practices", value = "Security Best Practices"), @See(href = "/docs/auth/obtaining-access-tokens", value = "Obtaining access tokens")})
+    @SeeAlso({
+            @See(href = "/docs/auth", value = "Authentication &amp;amp; Authorization"),
+            @See(href = "/docs/api/1/post/oauth/request_token", value = "POST oauth/request_token"),
+            @See(href = "/docs/api/1/get/oauth/authorize", value = "GET oauth/authorize"),
+            @See(href = "/docs/oauth/xauth", value = "xAuth"),
+            @See(href = "/docs/api/1/get/oauth/authenticate", value = "GET oauth/authenticate"),
+            @See(href = "/docs/security/best-practices", value = "Security Best Practices"),
+            @See(href = "/docs/auth/obtaining-access-tokens", value = "Obtaining access tokens")})
     @Description("Allows a Consumer application to exchange the OAuth Request Token for an OAuth Access Token. This method fulfills Section 6.3 of the OAuth 1.0 authentication flow. The OAuth access token may also be used for xAuth operations. Please use HTTPS for this method, and all other OAuth token negotiation steps.")
     public void postAccess_token(@Description("The password of the user for which to obtain a token for. <strong>Required when using xAuth</strong>")
                                  @QueryParam("x_auth_password") final String x_auth_password, @Description("The username of the user to obtain a token for. <strong>Required when using xAuth</strong>")
@@ -65,7 +82,13 @@ public class OauthResource {
     @Path("/request_token")
     @ApiVersion({"1", "1.1"})
     @Tag({"OAuth"})
-    @SeeAlso({@See(href = "/docs/api/1/post/oauth/access_token", value = "POST oauth/access_token"), @See(href = "/docs/api/1/get/oauth/authorize", value = "GET oauth/authorize"), @See(href = "/docs/api/1/get/oauth/authenticate", value = "GET oauth/authenticate"), @See(href = "/docs/auth/oauth", value = "OAuth"), @See(href = "/docs/security/best-practices", value = "Security Best Practices"), @See(href = "/docs/auth", value = "Authentication &amp;amp; Authorization")})
+    @SeeAlso({
+            @See(href = "/docs/api/1/post/oauth/access_token", value = "POST oauth/access_token"),
+            @See(href = "/docs/api/1/get/oauth/authorize", value = "GET oauth/authorize"),
+            @See(href = "/docs/api/1/get/oauth/authenticate", value = "GET oauth/authenticate"),
+            @See(href = "/docs/auth/oauth", value = "OAuth"),
+            @See(href = "/docs/security/best-practices", value = "Security Best Practices"),
+            @See(href = "/docs/auth", value = "Authentication &amp;amp; Authorization")})
     @Description("Allows a Consumer application to obtain an OAuth Request Token to request user authorization. This method fulfills Section 6.1 of the OAuth 1.0 authentication flow. It is strongly recommended you use HTTPS for all OAuth authorization steps. Usage Note: Only ASCII values are accepted for the oauth_nonce")
     public void postRequest_token(@Description("For OAuth 1.0a compliance this parameter is <strong>required</strong>. The value you specify here will be used as the URL a user is redirected to should they approve your application's access to their account. Set this to <tt>oob</tt> for out-of-band pin mode. This is also how you specify custom callbacks for use in desktop/mobile applications. ")
                                   @PathParam("oauth_callback") final String oauth_callback, @Description("Overrides the access level an application requests to a users account. Supported values are <tt>read</tt> or <tt>write</tt>. This parameter is intended to allow a developer to register a read/write application but also request read only access when appropriate.")

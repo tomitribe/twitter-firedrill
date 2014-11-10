@@ -34,7 +34,7 @@ public class SavedsearchesResource {
     @Path("/list")
     @Category({"saved_searches"})
     @ApiVersion({"1.1"})
-    @SeeAlso({@See(href="get/saved_searches/show/%3Aid", value = "GET saved_searches/show/:id"), @See(href="post/saved_searches/create", value = "POST saved_searches/create"), @See(href="post/saved_searches/destroy/%3Aid", value = "POST saved_searches/destroy/:id"), @See(href="get/search/tweets", value = "GET search/tweets")})
+    @SeeAlso({@See(href="/apirest/twitter/GET/saved_searches/show/%3Aid", value = "GET saved_searches/show/:id"), @See(href="/apirest/twitter/POST/saved_searches/create", value = "POST saved_searches/create"), @See(href="/apirest/twitter/POST/saved_searches/destroy/%3Aid", value = "POST saved_searches/destroy/:id"), @See(href="/apirest/twitter/GET/search/tweets", value = "GET search/tweets")})
     @UserLimit(rate = @Rate(window = 15, unit = GovernanceUnit.MINUTES, limit = 15))
     @Description("Returns the authenticated user&#039;s saved search queries.")
     public Response getList() {
@@ -47,7 +47,7 @@ public class SavedsearchesResource {
     @Path("/show/{id}")
     @Category({"saved_searches"})
     @ApiVersion({"1.1"})
-    @SeeAlso({@See(href="get/saved_searches/list", value = "GET saved_searches/list"), @See(href="post/saved_searches/destroy/%3Aid", value = "POST saved_searches/destroy/:id"), @See(href="post/saved_searches/create", value = "POST saved_searches/create"), @See(href="get/search/tweets", value = "GET search/tweets")})
+    @SeeAlso({@See(href="/apirest/twitter/GET/saved_searches/list", value = "GET saved_searches/list"), @See(href="/apirest/twitter/POST/saved_searches/destroy/%3Aid", value = "POST saved_searches/destroy/:id"), @See(href="/apirest/twitter/POST/saved_searches/create", value = "POST saved_searches/create"), @See(href="/apirest/twitter/GET/search/tweets", value = "GET search/tweets")})
     @UserLimit(rate = @Rate(window = 15, unit = GovernanceUnit.MINUTES, limit = 15))
     @Description("Retrieve the information for the saved search represented by the given id. The authenticating user must be the owner of saved search ID being requested.")
     public Response getShowid(@Description("The ID of the saved search.")
@@ -61,7 +61,7 @@ public class SavedsearchesResource {
     @Path("/create")
     @Category({"saved_searches"})
     @ApiVersion({"1.1"})
-    @SeeAlso({@See(href="get/saved_searches/list", value = "GET saved_searches/list"), @See(href="get/saved_searches/show/%3Aid", value = "GET saved_searches/show/:id"), @See(href="post/saved_searches/destroy/%3Aid", value = "POST saved_searches/destroy/:id"), @See(href="get/search/tweets", value = "GET search/tweets")})
+    @SeeAlso({@See(href="/apirest/twitter/GET/saved_searches/list", value = "GET saved_searches/list"), @See(href="/apirest/twitter/GET/saved_searches/show/%3Aid", value = "GET saved_searches/show/:id"), @See(href="/apirest/twitter/POST/saved_searches/destroy/%3Aid", value = "POST saved_searches/destroy/:id"), @See(href="/apirest/twitter/GET/search/tweets", value = "GET search/tweets")})
     @Description("Create a new saved search for the authenticated user. A user may only have 25 saved searches.")
     public Response postCreate(@Description("The query of the search the user would like to save.")
                                @PathParam("query") final String query) {
@@ -74,7 +74,7 @@ public class SavedsearchesResource {
     @Path("/destroy/{id}")
     @Category({"saved_searches"})
     @ApiVersion({"1.1"})
-    @SeeAlso({@See(href="get/saved_searches/list", value = "GET saved_searches/list"), @See(href="get/saved_searches/show/%3Aid", value = "GET saved_searches/show/:id"), @See(href="post/saved_searches/create", value = "POST saved_searches/create")})
+    @SeeAlso({@See(href="/apirest/twitter/GET/saved_searches/list", value = "GET saved_searches/list"), @See(href="/apirest/twitter/GET/saved_searches/show/%3Aid", value = "GET saved_searches/show/:id"), @See(href="/apirest/twitter/POST/saved_searches/create", value = "POST saved_searches/create")})
     @Description("Destroys a saved search for the authenticating user. The authenticating user must be the owner of saved search id being destroyed.")
     public Response postDestroyid(@Description("The ID of the saved search.")
                                   @PathParam("id") final int id) {
