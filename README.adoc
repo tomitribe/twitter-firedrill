@@ -20,9 +20,30 @@ endif::[]
 
 == Introduction
 
-== Tribestream documentation annotations
+This sample demonstrates the annotations that are available within the Tribestream
+API and shows how to add them to a sample JAX-RS service.
+
+The annotations themselves are split into two artifacts, tribestream-api-wadlx and
+tribestream-api-governance.
+
+The tribestream-api-wadlx annotations provide a way to add documentation to the 
+source code of your JAX-RS service. These annotations provide information at runtime
+that is rendered in the API registry, providing instant, up-to-date, beautiful
+documentation.
+
+The tribestream-api-governance annotations allow you specify limits to the number
+of calls over a specific time period, and to the number of calls that can be made
+concurrently. Tribestream provides the functionality to apply these limits on a
+per-user and/or an all-user basis.
 
 == WADLx
+
+An addition to being able to provide a Web Application Description Language (WADL)
+file for your application at runtime, Tribestream is also able to provide an extended
+version of this, known as WADLx. This provides the information from the Tribestream
+annotations in your source code fully integrated with WADL. WADL is particularly 
+useful for creating a client for your application, and WADLx provides the additional
+documentation and governance elements that will help your service consumer.
 
 == Documentation Annotations
 
