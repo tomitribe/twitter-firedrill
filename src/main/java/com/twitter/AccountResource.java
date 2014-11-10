@@ -37,7 +37,7 @@ public class AccountResource {
     @Path("/settings")
     @Category({"account"})
     @ApiVersion({"1.1"})
-    @See(href="/apirest/twitter/GET/account/settings", value = "GET account/settings")
+    @See(href="/staging/apirest/endpoint/twitter/GET/account/settings", value = "GET account/settings")
     @UserLimit(rate = @Rate(window = 15, unit = GovernanceUnit.MINUTES, limit = 15))
     @Description("Returns settings (including current trend, geo and sleep time information) for the authenticating user.")
     public Response getSettings() {
@@ -50,7 +50,7 @@ public class AccountResource {
     @Path("/settings")
     @Category({"account"})
     @ApiVersion({"1.1"})
-    @See(href="/apirest/twitter/GET/account/settings", value = "GET account/settings")
+    @See(href="/staging/apirest/endpoint/twitter/GET/account/settings", value = "GET account/settings")
     @UserLimit(rate = @Rate(window = 15, unit = GovernanceUnit.MINUTES, limit = 15))
     @Description("Returns settings (including current trend, geo and sleep time information) for the authenticating user.")
     public Response postSettings(@Description("The Yahoo! Where On Earth ID to use as the user's default trend location. Global information is available by using 1 as the WOEID. The woeid must be one of the locations returned by <a href=\"https://dev.twitter.com/docs/api/1/get/trends/available\">GET trends/available</a>.")
@@ -70,7 +70,7 @@ public class AccountResource {
     @Path("/verify_credentials")
     @Category({"account"})
     @ApiVersion({"1.1"})
-    @See(href="/apirest/twitter/GET/account/settings", value = "GET account/settings")
+    @See(href="/staging/apirest/endpoint/twitter/GET/account/settings", value = "GET account/settings")
     @UserLimit(rate = @Rate(window = 15, unit = GovernanceUnit.MINUTES, limit = 15))
     @Description("Returns an HTTP 200 OK response code and a representation of the requesting user if authentication was successful; returns a 401 status code and an error message if not. Use this method to test if supplied user credentials are valid.")
     public UsersType getVerify_credentials(@Description("The <tt>entities</tt> node will not be included when set to <tt>false</tt>.")
@@ -85,8 +85,8 @@ public class AccountResource {
     @Path("/remove_profile_banner")
     @ApiVersion({"1.1"})
     @SeeAlso({@See(href = "/docs/user-profile-images-and-banners", value = "User Profile Images and Banners"),
-            @See(href="/apirest/twitter/POST/account/update_profile_banner", value = "POST account/update_profile_banner"),
-            @See(href="/apirest/twitter/GET/users/profile_banner", value = "GET users/profile_banner")})
+            @See(href="/staging/apirest/endpoint/twitter/POST/account/update_profile_banner", value = "POST account/update_profile_banner"),
+            @See(href="/staging/apirest/endpoint/twitter/GET/users/profile_banner", value = "GET users/profile_banner")})
     @Description("Removes the uploaded profile banner for the authenticating user. Returns HTTP 200 upon success.")
     public Response postRemove_profile_banner() {
         //TODO: implement
@@ -146,8 +146,8 @@ public class AccountResource {
     @Path("/update_profile_banner")
     @ApiVersion({"1.1"})
     @Tag({"profile banner", "profiles"})
-    @SeeAlso({@See(href="/apirest/twitter/POST/account/remove_profile_banner", value = "POST account/remove_profile_banner"),
-            @See(href="/apirest/twitter/POST/account/update_profile_background_image", value = "POST account/update_profile_background_image"),
+    @SeeAlso({@See(href="/staging/apirest/endpoint/twitter/POST/account/remove_profile_banner", value = "POST account/remove_profile_banner"),
+            @See(href="/staging/apirest/endpoint/twitter/POST/account/update_profile_background_image", value = "POST account/update_profile_background_image"),
             @See(href = "/docs/user-profile-images-and-banners", value = "User Profile Images and Banners")})
     @Description("Uploads a profile banner on behalf of the authenticating user. For best results, upload an")
     public Response postUpdate_profile_banner(@Description("The Base64-encoded or raw image data being uploaded as the user's new profile banner.")
@@ -187,7 +187,7 @@ public class AccountResource {
     @ApiVersion({"1.1"})
     @SeeAlso({
             @See(href = "/docs/user-profile-images-and-banners", value = "User Profile Images and Banners"),
-            @See(href="/apirest/twitter/GET/users/lookup", value = "GET users/lookup")})
+            @See(href="/staging/apirest/endpoint/twitter/GET/users/lookup", value = "GET users/lookup")})
     @Description("Updates the authenticating user&#039;s profile image. Note that this method expects raw multipart data, not a URL to an image. This method asynchronously processes the uploaded file before updating the user&#039;s profile image URL.")
     public Response postUpdate_profile_image(@Description("The avatar image for the profile, base64-encoded. Must be a valid GIF, JPG, or PNG image of less than 700 kilobytes in size. Images with width larger than 500 pixels will be scaled down. Animated GIFs will be converted to a static GIF of the first frame, removing the animation.")
                                              @PathParam("image") final String image, @Description("The <tt>entities</tt> node will not be included when set to <tt>false</tt>.")
