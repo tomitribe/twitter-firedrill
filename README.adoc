@@ -242,12 +242,119 @@ Keywords are specified as a String array on the annotation.
 
 == Governance Annotations
 
-=== @ApplicationLimit
+Tribestream allows API providers to limit the number of concurrent requests and/
+or the number of requests within a specified time window.
+
+Both of these throttling limits can be applied at an application-wide level and 
+user level.
+
+When any of the rate limits are exceeded, Tribestream will respond to further 
+requests with a HTTP 429 (Too Many Requests) response code.
 
 === @Concurrent
 
-=== @GovernanceUnit
+The @Concurrent annotation allows the service developer to specify how many
+simultaneous invocations of the method can occur. This restriction can be applied
+per-user by adding @Concurrent to @UserLimit) or to all invocations (by adding
+@Concurrent to @ApplicationLimit).
+
+@Concurrent takes one parameter, limit, which specifies the number of concurrent
+invocations allowed.
+
+----
+    @Concurrent(limit = 200)
+----
+
+The example above would allow 200 concurrent invocations. By default, unlimited 
+concurrent invocations are allowed.
 
 === @Rate
 
+The @Rate annotation allows the developer to control the number of invocations
+allowed within a specific time frame. The time frame is defined by the window
+and unit attributes. The units attribute uses the GovernaneUnit enumeration,
+which has the following values: SECONDS, MINUTES, HOURS, DAYS.
+
+The limit attribute specifies the number of allowed invocations within the
+specified time frame.
+
+So, for example to allow 200 calls per minute, the following could be used:
+
+----
+    @Rate(window = 1, unit = GovernanceUnit.MINUTES, limit = 200)
+	@Rate(window = 60, unit = GovernanceUnit.SECONDS, limit = 200)
+----
+
+To allow 1000 calls per hour, the following could be used:
+
+----
+    @Rate(window = 1, unit = GovernanceUnit.HOURS, limit = 1000)
+	@Rate(window = 60, unit = GovernanceUnit.MINUTES, limit = 1000)
+----
+
+@Rate, in the same way as @Concurrent, should be specified on the rate attribute
+of @ApplicationLimit and/or @UserLimit to apply the rate application-wide
+or on a per-user basis respectively.
+
+Rates are enforced by counting the number of invocations from the first call. The
+count is reset on the first invocation after the window has passed. Therefore, if
+a rate of 15 calls per 15 minutes has been specified, you could not make say, 5 in
+each 15 minute block for 45 minutes, and then 45 in the next 15 minutes.
+
+=== @ApplicationLimit
+
+@Application limit allows the developer to provide @Rate and @Concurrent limits
+for the method that will apply across all invocations of the method, regardsless
+of the caller. 
+
+Specifying @ApplicationLimit for a method is optional, and by default, if
+@ApplicationLimit is not specified the unlimited invocations are permiited
+unless restricted by a @UserLimit. Both the rate and concurrent attributes are
+optional (and unlimited by default), so specifing @ApplicationLimit() (i.e. with
+no attributes) is the same as not adding @ApplicationLimit at all.
+
+----
+    @GET
+    @Produces("application/json")
+    @Path("/configuration")
+    @ApplicationLimit(
+	    rate = @Rate(window = 15, unit = GovernanceUnit.MINUTES, limit = 15),
+		concurrent = @Concurrent(limit = 5)
+	)
+    public Response getConfiguration() {
+        //TODO: implementation
+
+    }
+----
+
+In the example above, the method can be called up to 15 times in a 15 minute 
+period, with up to 5 calls happening simultaeneously.
+
 === @UserLimit
+
+The @UserLimit annotation follows the same structure as @ApplicationLimit,
+but applies the rate and concurrent settings on a per-user basis. So if the 
+following annotation were applied:
+
+----
+    @GET
+    @Produces("application/json")
+    @Path("/configuration")
+    @UserLimit(
+	    rate = @Rate(window = 15, unit = GovernanceUnit.MINUTES, limit = 15),
+		concurrent = @Concurrent(limit = 2)
+	)
+    public Response getConfiguration() {
+        //TODO: implementation
+
+    }
+----
+
+both Bob and Alice could call this method 15 times every 15 minutes. If Bob exceeds
+the limit, Alice can still make her calls successfully until she reaches the limit.
+
+Both Bob and Alice can make 2 simultaneous calls each.
+
+Application and user limits are displayed in the documentation for the resource:
+
+image::images/ratelimit_1.png[Rate Limits]
