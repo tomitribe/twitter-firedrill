@@ -328,7 +328,7 @@ no attributes) is the same as not adding @ApplicationLimit at all.
 ----
 
 In the example above, the method can be called up to 15 times in a 15 minute 
-period, with up to 5 calls happening simultaeneously.
+period, with up to 5 calls happening simultaneously.
 
 === @UserLimit
 
