@@ -76,7 +76,6 @@ public class BlocksResource {
     @ApiVersion({"1.1"})
     @Descriptions({
             @Description(lang = "en", value = "Blocks the specified user from following the authenticating user."),
-            @Description(lang = "en", value = "Bloque l' utilisateur spécifié de suivre l'utilisateur d'authentification .")
     })
     public Response postCreate(@Description("The screen name of the potentially blocked user.")
                                @QueryParam("screen_name") final String screen_name, @Description("The ID of the potentially blocked user.")
