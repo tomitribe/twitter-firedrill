@@ -53,13 +53,13 @@
     </dependency>
     <dependency>
       <groupId>com.tomitribe.tribestream</groupId>
-      <artifactId>tribestream-api-wadlx</artifactId>
+      <artifactId>tribestream-wadlx-api</artifactId>
       <version>0.50-SNAPSHOT</version>
       <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>com.tomitribe.tribestream</groupId>
-      <artifactId>tribestream-api-governance</artifactId>
+      <artifactId>tribestream-governance-api</artifactId>
       <version>0.50-SNAPSHOT</version>
       <scope>provided</scope>
     </dependency>
