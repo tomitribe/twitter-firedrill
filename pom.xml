@@ -19,6 +19,12 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
+  <parent>
+    <groupId>com.tomitribe</groupId>
+    <artifactId>tomitribe-parent</artifactId>
+    <version>4</version>
+  </parent>
+  
   <!-- Change: groupId, artifactId, version -->
   <groupId>com.tomitribe</groupId>
   <artifactId>twitter</artifactId>
