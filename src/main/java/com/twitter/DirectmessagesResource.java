@@ -56,7 +56,7 @@ public class DirectmessagesResource {
     @Category({"direct_messages"})
     @ApiVersion({"1.1"})
     @Tag({"Direct Messages"})
-    @SeeAlso({@See(href="/staging/apirest/endpoint/twitter/GET/direct_messages", value = "GET direct_messages"), @See(href="/staging/apirest/endpoint/twitter/GET/direct_messages/sent", value = "GET direct_messages/sent")})
+    @SeeAlso({@See(href="endpoint/twitter/GET/direct_messages", value = "GET direct_messages"), @See(href="endpoint/twitter/GET/direct_messages/sent", value = "GET direct_messages/sent")})
     @UserLimit(rate = @Rate(window = 15, unit = GovernanceUnit.MINUTES, limit = 15))
     @Description("Returns a single direct message, specified by an id parameter. Like the /1.1/direct_messages.format request, this method will include the user objects of the sender and recipient. Important: This method requires an access token with RWD (read, write &amp; direct message) permissions. Consult The Application Permission Model for more information.")
     public Response getShow(@Description("The ID of the direct message.")
