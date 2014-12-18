@@ -7,7 +7,7 @@
                         <div class="Field-items">
                             <div class="Field-items-item even "><h2>Guide to Uploading Media</h2>
 
-                                <p>There are a few important concepts to understand when using the <a href="endpoint/twitter/POST/statuses/update_with_media">POST statuses / update_with_media</a> endpoint. Including media with a Tweet over OAuth can be a
+                                <p>There are a few important concepts to understand when using the <a href="endpoint/Twitter/POST/statuses/update_with_media">POST statuses / update_with_media</a> endpoint. Including media with a Tweet over OAuth can be a
                                     bit tricky, we’ve outlined some things to keep in mind as well as a working sample of how to use this endpoint here.</p>
 
                                 <h2>Keep in mind</h2>
@@ -15,10 +15,10 @@
                                     <li>Because the method uses multipart POST, OAuth is handled a little differently. POST or query string parameters are not used when calculating an OAuth signature basestring or signature. Only the oauth_* parameters are
                                         used.
                                     </li>
-                                    <li>Maximum file size is available in the “photo_size_limit” field from <a href="endpoint/twitter/GET/help/configuration">GET help/configuration</a>.</li>
-                                    <li>Maximum number of media per status update is in the “max_media_per_upload” field from <a href="endpoint/twitter/GET/help/configuration">GET help/configuration</a>.</li>
+                                    <li>Maximum file size is available in the “photo_size_limit” field from <a href="endpoint/Twitter/GET/help/configuration">GET help/configuration</a>.</li>
+                                    <li>Maximum number of media per status update is in the “max_media_per_upload” field from <a href="endpoint/Twitter/GET/help/configuration">GET help/configuration</a>.</li>
                                     <li>Users have a separate, published daily media upload limit that is independent of their unpublished daily status update limits. Details on these limits are communicated in the HTTP headers detailed on <a
-                                            href="endpoint/twitter/POST/statuses/update_with_media">POST statuses/update_with_media</a>.
+                                            href="endpoint/Twitter/POST/statuses/update_with_media">POST statuses/update_with_media</a>.
                                     </li>
                                     <li>The image passed should be the raw binary of the image or binary base64 encoded, no need to otherwise encode or escape the contents as long as the Content-Type is set appropriately (when in doubt:
                                         “application/octet-stream”).
@@ -31,7 +31,7 @@
                                 <h2>Example of update_with_media</h2>
 
                                 <p>As of Twurl v0.9.0 (see our command-line <a href="https://github.com/twitter/twurl">Twurl</a> tool) support for calling Twitter’s v1.1 REST API with a multipart message for the <a
-                                        href="endpoint/twitter/POST/statuses/update_with_media">POST statuses / update_with_media</a> endpoint now exists. Use this example as a great way to debug your own code. Note that many of the <a
+                                        href="endpoint/Twitter/POST/statuses/update_with_media">POST statuses / update_with_media</a> endpoint now exists. Use this example as a great way to debug your own code. Note that many of the <a
                                         href="/overview/api/twitter-libraries">Twitter Libraries</a> include methods that will handle this POST correctly for you.</p>
 
                                 <p>Using the —t option will show you the full trace of the request and response that was POSTed to the Twitter API.</p><code> twurl -X POST "/1.1/statuses/update_with_media.json" --file "/path/to/media.png" --file-field

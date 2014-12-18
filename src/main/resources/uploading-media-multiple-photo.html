@@ -20,11 +20,11 @@
                                 <p>Uploading multiple media files is a 2 step process.</p>
                                 <ol>
                                     <li><span>First, use POST multipart/form-data or base64 encoded files to https://upload.twitter.com/1.1/media/upload.json.</span></li>
-                                    <li><span>Second, collect the resulting IDs to pass as a comma separated list of </span><code>media_ids</code><span> for all the files you want to attach to your </span><a href="endpoint/twitter/POST/statuses/update">POST
+                                    <li><span>Second, collect the resulting IDs to pass as a comma separated list of </span><code>media_ids</code><span> for all the files you want to attach to your </span><a href="endpoint/Twitter/POST/statuses/update">POST
                                         statuses / update</a><span>.</span></li>
                                 </ol>
                                 <p>Uploaded media files will be available for attachment for 60 minutes before they are flushed from the servers (if not attached to a tweet). Note that you need to call the upload endpoint once per media file you want to
-                                    upload (so to upload three media files, call the upload endpoint three times, storing the <code>media_ids</code> ready to be attached to your <a href="endpoint/twitter/POST/statuses/update">POST statuses / update</a>).
+                                    upload (so to upload three media files, call the upload endpoint three times, storing the <code>media_ids</code> ready to be attached to your <a href="endpoint/Twitter/POST/statuses/update">POST statuses / update</a>).
                                 </p>
 
                                 <p>See sample queries section below for examples of calls and results.</p>
