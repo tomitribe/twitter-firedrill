@@ -11,10 +11,12 @@
 
 package com.twitter.dev.api;
 
+import com.tomitribe.wadlx.api.Description;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.XmlRootElement;
 
 
 /**
@@ -77,68 +79,90 @@ import javax.xml.bind.annotation.XmlType;
  * </pre>
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "usersType", propOrder = {
-        "contributorsEnabled",
-        "createdAt",
-        "defaultProfile",
-        "defaultProfileImage",
-        "description",
-        "entities",
-        "favouritesCount",
-        "followRequestSent",
-        "following",
-        "followersCount",
-        "friendsCount",
-        "geoEnabled",
-        "id",
-        "idStr",
-        "isTranslator",
-        "lang",
-        "listedCount",
-        "location",
-        "name",
-        "notifications",
-        "profileBackgroundColor",
-        "profileBackgroundImageUrl",
-        "profileBackgroundImageUrlHttps",
-        "profileBackgroundTile",
-        "profileBannerUrl",
-        "profileImageUrl",
-        "profileImageUrlHttps",
-        "profileLinkColor",
-        "profileSidebarBorderColor",
-        "profileSidebarFillColor",
-        "profileTextColor",
-        "profileUseBackgroundImage",
-        "_protected",
-        "screenName",
-        "showAllInlineMedia",
-        "status",
-        "statusesCount",
-        "timeZone",
-        "url",
-        "utcOffset",
-        "verified",
-        "withheldInCountries",
-        "withheldScope"
-})
+@XmlRootElement
+@Description("<p>Java class for usersType complex type.\n" +
+        "<p/>\n" +
+        "<p>The following schema fragment specifies the expected content contained within this class.\n" +
+        "<p/>\n" +
+        "<pre>\n" +
+        "&lt;complexType name=\"usersType\">\n" +
+        "  &lt;complexContent>\n" +
+        "    &lt;restriction base=\"{http://www.w3.org/2001/XMLSchema}anyType\">\n" +
+        "      &lt;sequence>\n" +
+        "        &lt;element name=\"contributors_enabled\" type=\"{http://www.w3.org/2001/XMLSchema}boolean\"/>\n" +
+        "        &lt;element name=\"created_at\" type=\"{http://www.w3.org/2001/XMLSchema}string\"/>\n" +
+        "        &lt;element name=\"default_profile\" type=\"{http://www.w3.org/2001/XMLSchema}boolean\"/>\n" +
+        "        &lt;element name=\"default_profile_image\" type=\"{http://www.w3.org/2001/XMLSchema}boolean\"/>\n" +
+        "        &lt;element name=\"description\" type=\"{http://www.w3.org/2001/XMLSchema}string\" minOccurs=\"0\"/>\n" +
+        "        &lt;element name=\"entities\" type=\"{http://dev.twitter.com/api}entitiesType\"/>\n" +
+        "        &lt;element name=\"favourites_count\" type=\"{http://www.w3.org/2001/XMLSchema}int\"/>\n" +
+        "        &lt;element name=\"follow_request_sent\" type=\"{http://www.w3.org/2001/XMLSchema}boolean\" minOccurs=\"0\"/>\n" +
+        "        &lt;element name=\"following\" type=\"{http://www.w3.org/2001/XMLSchema}boolean\" minOccurs=\"0\"/>\n" +
+        "        &lt;element name=\"followers_count\" type=\"{http://www.w3.org/2001/XMLSchema}int\"/>\n" +
+        "        &lt;element name=\"friends_count\" type=\"{http://www.w3.org/2001/XMLSchema}int\"/>\n" +
+        "        &lt;element name=\"geo_enabled\" type=\"{http://www.w3.org/2001/XMLSchema}boolean\"/>\n" +
+        "        &lt;element name=\"id\" type=\"{http://www.w3.org/2001/XMLSchema}long\"/>\n" +
+        "        &lt;element name=\"id_str\" type=\"{http://www.w3.org/2001/XMLSchema}string\"/>\n" +
+        "        &lt;element name=\"is_translator\" type=\"{http://www.w3.org/2001/XMLSchema}boolean\"/>\n" +
+        "        &lt;element name=\"lang\" type=\"{http://www.w3.org/2001/XMLSchema}string\"/>\n" +
+        "        &lt;element name=\"listed_count\" type=\"{http://www.w3.org/2001/XMLSchema}int\"/>\n" +
+        "        &lt;element name=\"location\" type=\"{http://www.w3.org/2001/XMLSchema}string\" minOccurs=\"0\"/>\n" +
+        "        &lt;element name=\"name\" type=\"{http://www.w3.org/2001/XMLSchema}string\"/>\n" +
+        "        &lt;element name=\"notifications\" type=\"{http://www.w3.org/2001/XMLSchema}boolean\" minOccurs=\"0\"/>\n" +
+        "        &lt;element name=\"profile_background_color\" type=\"{http://www.w3.org/2001/XMLSchema}string\"/>\n" +
+        "        &lt;element name=\"profile_background_image_url\" type=\"{http://www.w3.org/2001/XMLSchema}string\"/>\n" +
+        "        &lt;element name=\"profile_background_image_url_https\" type=\"{http://www.w3.org/2001/XMLSchema}string\"/>\n" +
+        "        &lt;element name=\"profile_background_tile\" type=\"{http://www.w3.org/2001/XMLSchema}boolean\"/>\n" +
+        "        &lt;element name=\"profile_banner_url\" type=\"{http://www.w3.org/2001/XMLSchema}string\"/>\n" +
+        "        &lt;element name=\"profile_image_url\" type=\"{http://www.w3.org/2001/XMLSchema}string\"/>\n" +
+        "        &lt;element name=\"profile_image_url_https\" type=\"{http://www.w3.org/2001/XMLSchema}string\"/>\n" +
+        "        &lt;element name=\"profile_link_color\" type=\"{http://www.w3.org/2001/XMLSchema}string\"/>\n" +
+        "        &lt;element name=\"profile_sidebar_border_color\" type=\"{http://www.w3.org/2001/XMLSchema}string\"/>\n" +
+        "        &lt;element name=\"profile_sidebar_fill_color\" type=\"{http://www.w3.org/2001/XMLSchema}string\"/>\n" +
+        "        &lt;element name=\"profile_text_color\" type=\"{http://www.w3.org/2001/XMLSchema}string\"/>\n" +
+        "        &lt;element name=\"profile_use_background_image\" type=\"{http://www.w3.org/2001/XMLSchema}boolean\"/>\n" +
+        "        &lt;element name=\"protected\" type=\"{http://www.w3.org/2001/XMLSchema}boolean\"/>\n" +
+        "        &lt;element name=\"screen_name\" type=\"{http://www.w3.org/2001/XMLSchema}string\"/>\n" +
+        "        &lt;element name=\"show_all_inline_media\" type=\"{http://www.w3.org/2001/XMLSchema}boolean\"/>\n" +
+        "        &lt;element name=\"status\" type=\"{http://dev.twitter.com/api}tweetsType\" minOccurs=\"0\"/>\n" +
+        "        &lt;element name=\"statuses_count\" type=\"{http://www.w3.org/2001/XMLSchema}int\"/>\n" +
+        "        &lt;element name=\"time_zone\" type=\"{http://www.w3.org/2001/XMLSchema}string\" minOccurs=\"0\"/>\n" +
+        "        &lt;element name=\"url\" type=\"{http://www.w3.org/2001/XMLSchema}string\" minOccurs=\"0\"/>\n" +
+        "        &lt;element name=\"utc_offset\" type=\"{http://www.w3.org/2001/XMLSchema}int\" minOccurs=\"0\"/>\n" +
+        "        &lt;element name=\"verified\" type=\"{http://www.w3.org/2001/XMLSchema}boolean\"/>\n" +
+        "        &lt;element name=\"withheld_in_countries\" type=\"{http://www.w3.org/2001/XMLSchema}string\"/>\n" +
+        "        &lt;element name=\"withheld_scope\" type=\"{http://www.w3.org/2001/XMLSchema}string\"/>\n" +
+        "      &lt;/sequence>\n" +
+        "    &lt;/restriction>\n" +
+        "  &lt;/complexContent>\n" +
+        "&lt;/complexType>\n" +
+        "</pre>")
 public class UsersType {
 
     @XmlElement(name = "contributors_enabled")
+    @Description("contributorsEnabled")
     protected boolean contributorsEnabled;
     @XmlElement(name = "created_at", required = true)
+    @Description("createdAt")
     protected String createdAt;
     @XmlElement(name = "default_profile")
+    @Description("defaultProfile")
     protected boolean defaultProfile;
     @XmlElement(name = "default_profile_image")
+    @Description("defaultProfileImage")
     protected boolean defaultProfileImage;
+    @Description("description")
     protected String description;
     @XmlElement(required = true)
+    @Description("entities")
     protected EntitiesType entities;
     @XmlElement(name = "favourites_count")
+    @Description("favouritesCount")
     protected int favouritesCount;
     @XmlElement(name = "follow_request_sent")
+    @Description("followRequestSent")
     protected Boolean followRequestSent;
+    @Description("following")
     protected Boolean following;
     @XmlElement(name = "followers_count")
     protected int followersCount;
