@@ -19,6 +19,13 @@
 
   <packaging>war</packaging>
 
+  <scm>
+    <connection>scm:git:git@github.com:tomitribe/twitter.git</connection>
+    <url>scm:git:git@github.com:tomitribe/twitter.git</url>
+    <developerConnection>scm:git:git@github.com:tomitribe/twitter.git</developerConnection>
+    <tag>HEAD</tag>
+  </scm>
+
   <dependencies>
     <dependency>
       <groupId>org.apache.openejb</groupId>
