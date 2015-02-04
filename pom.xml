@@ -14,7 +14,7 @@
   <parent>
     <groupId>com.tomitribe</groupId>
     <artifactId>tomitribe-parent</artifactId>
-    <version>4</version>
+    <version>5</version>
   </parent>
 
   <!-- Change: groupId, artifactId, version -->
