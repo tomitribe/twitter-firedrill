@@ -2,10 +2,7 @@ package com.twitter;
 
 import javax.ws.rs.core.Response;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
-import java.util.Random;
 import java.util.function.Supplier;
 
 public class ScenarioBuilder {
@@ -124,25 +121,6 @@ public class ScenarioBuilder {
             e.printStackTrace();
         }
         return Response.ok().build();
-    }
-
-    public static class WeightedRandomResult<T> {
-        final Random random = new Random();
-
-        final List<T> statusCodes = new ArrayList<>();
-
-        public WeightedRandomResult(final T... statusCodes) {
-            Collections.addAll(this.statusCodes, statusCodes);
-        }
-
-        public WeightedRandomResult(final Collection<T> statusCodes) {
-            this.statusCodes.addAll(statusCodes);
-        }
-
-        public T get() {
-            final int i = random.nextInt(statusCodes.size());
-            return statusCodes.get(i);
-        }
     }
 
 }
