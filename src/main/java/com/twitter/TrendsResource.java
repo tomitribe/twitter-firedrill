@@ -19,7 +19,9 @@ import com.tomitribe.wadlx.api.Category;
 import com.tomitribe.wadlx.api.Description;
 import com.tomitribe.wadlx.api.See;
 import com.tomitribe.wadlx.api.SeeAlso;
+import org.tomitribe.firedrill.rs.ResponseFunction;
 
+import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -30,18 +32,21 @@ import javax.ws.rs.core.Response;
 @Path("/trends")
 public class TrendsResource {
 
+    @Inject
+    private ResponseFunction function;
+
     @GET
     @Produces("application/json")
     @Path("/available")
     @Category({"trends"})
     @ApiVersion({"1.1"})
-    @SeeAlso({@See(href="endpoint/Twitter/GET/trends/place", value = "GET trends/place"), @See(href="endpoint/Twitter/GET/trends/closest", value = "GET trends/closest")})
+    @SeeAlso({@See(href = "endpoint/Twitter/GET/trends/place", value = "GET trends/place"), @See(href = "endpoint/Twitter/GET/trends/closest", value = "GET trends/closest")})
     @ApplicationLimit(rate = @Rate(window = 15, unit = GovernanceUnit.MINUTES, limit = 15))
     @UserLimit(rate = @Rate(window = 15, unit = GovernanceUnit.MINUTES, limit = 15))
     @Description("Returns the locations that Twitter has trending topic information for. The response is an array of &quot;locations&quot; that encode the location&#039;s WOEID and some other human-readable information such as a canonical name and country the location belongs in. A WOEID is a Yahoo! Where On Earth ID.")
     public Response getAvailable() {
         //TODO: implement
-        return null;
+        return function.get();
     }
 
     @GET
@@ -49,7 +54,7 @@ public class TrendsResource {
     @Path("/closest")
     @Category({"trends"})
     @ApiVersion({"1.1"})
-    @SeeAlso({@See(href="endpoint/Twitter/GET/trends/available", value = "GET trends/available"), @See(href="endpoint/Twitter/GET/trends/closest", value = "GET trends/closest")})
+    @SeeAlso({@See(href = "endpoint/Twitter/GET/trends/available", value = "GET trends/available"), @See(href = "endpoint/Twitter/GET/trends/closest", value = "GET trends/closest")})
     @ApplicationLimit(rate = @Rate(window = 15, unit = GovernanceUnit.MINUTES, limit = 15))
     @UserLimit(rate = @Rate(window = 15, unit = GovernanceUnit.MINUTES, limit = 15))
     @Description("Returns the locations that Twitter has trending topic information for, closest to a specified location. The response is an array of &quot;locations&quot; that encode the location&#039;s WOEID and some other human-readable information such as a canonical name and country the location belongs in. A WOEID is a Yahoo! Where On Earth ID.")
@@ -57,7 +62,7 @@ public class TrendsResource {
                                @PathParam("lat") final String lat, @Description("If provided with a <tt>lat</tt> parameter the available trend locations will be sorted by distance, nearest to furthest, to the co-ordinate pair. The valid ranges for longitude is -180.0 to +180.0 (West is negative, East is positive) inclusive.")
                                @PathParam("long") final String long_arg) {
         //TODO: implement
-        return null;
+        return function.get();
     }
 
     @GET
@@ -65,7 +70,7 @@ public class TrendsResource {
     @Path("/place")
     @Category({"trends"})
     @ApiVersion({"1.1"})
-    @SeeAlso({@See(href="endpoint/Twitter/GET/trends/available", value = "GET trends/available"), @See(href="endpoint/Twitter/GET/trends/closest", value = "GET trends/closest")})
+    @SeeAlso({@See(href = "endpoint/Twitter/GET/trends/available", value = "GET trends/available"), @See(href = "endpoint/Twitter/GET/trends/closest", value = "GET trends/closest")})
     @ApplicationLimit(rate = @Rate(window = 15, unit = GovernanceUnit.MINUTES, limit = 15))
     @UserLimit(rate = @Rate(window = 15, unit = GovernanceUnit.MINUTES, limit = 15))
     @Description("Returns the top 10 trending topics for a specific WOEID, if trending information is available for it. The response is an array of &quot;trend&quot; objects that encode the name of the trending topic, the query parameter that can be used to search for the topic on Twitter Search, and the Twitter Search URL. This information is cached for 5 minutes.")
@@ -73,7 +78,7 @@ public class TrendsResource {
                              @PathParam("id") final int id, @Description("Setting this equal to <tt>hashtags</tt> will remove all hashtags from the trends list.")
                              @QueryParam("exclude") final String exclude) {
         //TODO: implement
-        return null;
+        return function.get();
     }
 
 }

@@ -1,181 +1,200 @@
 <article class="Content" id="main-content">
-    <div class="region region-content">
-        <div class="SystemBlock">
-            <div id="Node--139" class="  Node node node-documentation clearfix  Node--documentation ">
-                <div class="Node-content">
-                    <div class=" Field FieldName-body FieldType-textWithSummary FieldLabel-hidden ">
-                        <div class="Field-items">
-                            <div class="Field-items-item even "><p>The Twitter Search API is part of Twitter’s v1.1 REST API. It allows queries against the indices of recent or popular Tweets and behaves similarily to, but not exactly like the Search
-                                feature available in Twitter mobile or web clients, such as <a href="https://twitter.com/search">Twitter.com search</a>.</p>
+  <div class="region region-content">
+    <div class="SystemBlock">
+      <div id="Node--139" class="  Node node node-documentation clearfix  Node--documentation ">
+        <div class="Node-content">
+          <div class=" Field FieldName-body FieldType-textWithSummary FieldLabel-hidden ">
+            <div class="Field-items">
+              <div class="Field-items-item even "><p>The Twitter Search API is part of Twitter’s v1.1 REST API. It allows queries against the indices of recent or popular Tweets
+                and behaves similarily to, but not exactly like the Search
+                feature available in Twitter mobile or web clients, such as <a href="https://twitter.com/search">Twitter.com search</a>.</p>
 
-                                <p>Before getting involved, it’s important to know that the Search API is focused on relevance and not completeness. This means that some Tweets and users may be missing from search results. If you want to match for
-                                    completeness you should consider using a <a href="/streaming/overview">Streaming API</a> instead.</p>
+                <p>Before getting involved, it’s important to know that the Search API is focused on relevance and not completeness. This means that some Tweets and users may be
+                  missing from search results. If you want to match for
+                  completeness you should consider using a <a href="/streaming/overview">Streaming API</a> instead.</p>
 
-                                <p>A detailed reference on this API endpoint can be found at <a href="endpoint/Twitter/GET/search/tweets">GET search/tweets</a>.</p>
+                <p>A detailed reference on this API endpoint can be found at <a href="endpoint/Twitter/GET/search/tweets">GET search/tweets</a>.</p>
 
-                                <h2>How to build a query</h2>
+                <h2>How to build a query</h2>
 
-                                <p>The best way to build a query and test if it’s valid and will return matched Tweets is to first try it at <a href="https://twitter.com/search">twitter.com/search</a>. As you get a satisfactory result set, the URL loaded
-                                    in the browser will contain the proper query syntax that can be reused in the API endpoint. Here’s an example:</p>
-                                <ol>
-                                    <li>We want to search for tweets referencing @twitterapi account. First, we run the search on <a href="https://twitter.com/search">twitter.com/search</a></li>
-                                    <li>Check and copy the URL loaded. In this case, we got: <a href="https://twitter.com/search?q=%40twitterapi">https://twitter.com/search?q=%40twitterapi</a></li>
-                                    <li>Replace “https://twitter.com/search” with “https://api.twitter.com/1.1/search/tweets.json” and you will get: <strong>https://api.twitter.com/1.1/search/tweets.json?q=%40twitterapi</strong></li>
-                                    <li><a href="/console">Execute this URL</a> to do the search in the API</li>
-                                </ol>
-                                <p>Please note that now API v1.1 requires that the request must be authenticated, check <a href="/oauth">Authentication &amp; Authorization</a> documentation for more details on how to do it. Also note that the search
-                                    results at twitter.com may return historical results while the Search API usually only serves tweets from the past week.</p>
+                <p>The best way to build a query and test if it’s valid and will return matched Tweets is to first try it at <a
+                        href="https://twitter.com/search">twitter.com/search</a>. As you get a satisfactory result set, the URL loaded
+                  in the browser will contain the proper query syntax that can be reused in the API endpoint. Here’s an example:</p>
+                <ol>
+                  <li>We want to search for tweets referencing @twitterapi account. First, we run the search on <a href="https://twitter.com/search">twitter.com/search</a></li>
+                  <li>Check and copy the URL loaded. In this case, we got: <a href="https://twitter.com/search?q=%40twitterapi">https://twitter.com/search?q=%40twitterapi</a></li>
+                  <li>Replace “https://twitter.com/search” with “https://api.twitter.com/1.1/search/tweets.json” and you will get: <strong>https://api.twitter.com/1.1/search/tweets.json?q=%40twitterapi</strong>
+                  </li>
+                  <li><a href="/console">Execute this URL</a> to do the search in the API</li>
+                </ol>
+                <p>Please note that now API v1.1 requires that the request must be authenticated, check <a href="/oauth">Authentication &amp; Authorization</a> documentation for
+                  more details on how to do it. Also note that the search
+                  results at twitter.com may return historical results while the Search API usually only serves tweets from the past week.</p>
 
-                                <h3>Query operators</h3>
+                <h3>Query operators</h3>
 
-                                <p>The query can have operators that modify its behavior, the available operators are:</p>
-                                <table>
-                                    <thead>
-                                    <tr>
-                                        <th>Operator</th>
-                                        <th>Finds tweets…</th>
-                                    </tr>
-                                    <tr></tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr>
-                                        <td>watching now</td>
-                                        <td>containing both “watching” and “now”. This is the default operator.</td>
-                                    </tr>
-                                    <tr>
-                                        <td>“happy hour”</td>
-                                        <td>containing the exact phrase “happy hour”.</td>
-                                    </tr>
-                                    <tr>
-                                        <td>love OR hate</td>
-                                        <td>containing either “love” or “hate” (or both).</td>
-                                    </tr>
-                                    <tr>
-                                        <td>beer -root</td>
-                                        <td>containing “beer” but not “root”.</td>
-                                    </tr>
-                                    <tr>
-                                        <td>#haiku</td>
-                                        <td>containing the hashtag “haiku”.</td>
-                                    </tr>
-                                    <tr>
-                                        <td>from:alexiskold</td>
-                                        <td>sent from person “alexiskold”.</td>
-                                    </tr>
-                                    <tr>
-                                        <td>to:techcrunch</td>
-                                        <td>sent to person “techcrunch”.</td>
-                                    </tr>
-                                    <tr>
-                                        <td>@mashable</td>
-                                        <td>referencing person “mashable”.</td>
-                                    </tr>
-                                    <tr>
-                                        <td>superhero since:2010-12-27</td>
-                                        <td>containing “superhero” and sent since date “2010-12-27” (year-month-day).</td>
-                                    </tr>
-                                    <tr>
-                                        <td>ftw until:2010-12-27</td>
-                                        <td>containing “ftw” and sent before the date “2010-12-27”.</td>
-                                    </tr>
-                                    <tr>
-                                        <td>movie -scary :)</td>
-                                        <td>containing “movie”, but not “scary”, and with a positive attitude.</td>
-                                    </tr>
-                                    <tr>
-                                        <td>flight :(</td>
-                                        <td>containing “flight” and with a negative attitude.</td>
-                                    </tr>
-                                    <tr>
-                                        <td>traffic ?</td>
-                                        <td>containing “traffic” and asking a question.</td>
-                                    </tr>
-                                    <tr>
-                                        <td>hilarious filter:links</td>
-                                        <td>containing “hilarious” and linking to URL.</td>
-                                    </tr>
-                                    <tr>
-                                        <td>news source:twitterfeed</td>
-                                        <td>containing “news” and entered via TwitterFeed</td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                                <p>Please, make sure to <a href="http://en.wikipedia.org/wiki/URL_encoding">URL encode</a> these queries before making the request. There are several online tools to help you to do that, or you can search at
-                                    twitter.com/search and copy the encoded URL from the browser’s address bar. The table below show some example mappings from search queries to URL encoded queries:</p>
-                                <table>
-                                    <thead>
-                                    <tr>
-                                        <th>Search query</th>
-                                        <th>URL encoded query</th>
-                                    </tr>
-                                    <tr></tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr>
-                                        <td>#haiku #poetry</td>
-                                        <td>%23haiku+%23poetry</td>
-                                    </tr>
-                                    <tr>
-                                        <td>“happy hour” :)</td>
-                                        <td>%22happy%20hour%22%20%3A%29</td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                                <p>Note that the space character can be represented by “%20” or “+” sign.</p>
+                <p>The query can have operators that modify its behavior, the available operators are:</p>
+                <table>
+                  <thead>
+                  <tr>
+                    <th>Operator</th>
+                    <th>Finds tweets…</th>
+                  </tr>
+                  <tr></tr>
+                  </thead>
+                  <tbody>
+                  <tr>
+                    <td>watching now</td>
+                    <td>containing both “watching” and “now”. This is the default operator.</td>
+                  </tr>
+                  <tr>
+                    <td>“happy hour”</td>
+                    <td>containing the exact phrase “happy hour”.</td>
+                  </tr>
+                  <tr>
+                    <td>love OR hate</td>
+                    <td>containing either “love” or “hate” (or both).</td>
+                  </tr>
+                  <tr>
+                    <td>beer -root</td>
+                    <td>containing “beer” but not “root”.</td>
+                  </tr>
+                  <tr>
+                    <td>#haiku</td>
+                    <td>containing the hashtag “haiku”.</td>
+                  </tr>
+                  <tr>
+                    <td>from:alexiskold</td>
+                    <td>sent from person “alexiskold”.</td>
+                  </tr>
+                  <tr>
+                    <td>to:techcrunch</td>
+                    <td>sent to person “techcrunch”.</td>
+                  </tr>
+                  <tr>
+                    <td>@mashable</td>
+                    <td>referencing person “mashable”.</td>
+                  </tr>
+                  <tr>
+                    <td>superhero since:2010-12-27</td>
+                    <td>containing “superhero” and sent since date “2010-12-27” (year-month-day).</td>
+                  </tr>
+                  <tr>
+                    <td>ftw until:2010-12-27</td>
+                    <td>containing “ftw” and sent before the date “2010-12-27”.</td>
+                  </tr>
+                  <tr>
+                    <td>movie -scary :)</td>
+                    <td>containing “movie”, but not “scary”, and with a positive attitude.</td>
+                  </tr>
+                  <tr>
+                    <td>flight :(</td>
+                    <td>containing “flight” and with a negative attitude.</td>
+                  </tr>
+                  <tr>
+                    <td>traffic ?</td>
+                    <td>containing “traffic” and asking a question.</td>
+                  </tr>
+                  <tr>
+                    <td>hilarious filter:links</td>
+                    <td>containing “hilarious” and linking to URL.</td>
+                  </tr>
+                  <tr>
+                    <td>news source:twitterfeed</td>
+                    <td>containing “news” and entered via TwitterFeed</td>
+                  </tr>
+                  </tbody>
+                </table>
+                <p>Please, make sure to <a href="http://en.wikipedia.org/wiki/URL_encoding">URL encode</a> these queries before making the request. There are several online tools
+                  to help you to do that, or you can search at
+                  twitter.com/search and copy the encoded URL from the browser’s address bar. The table below show some example mappings from search queries to URL encoded queries:
+                </p>
+                <table>
+                  <thead>
+                  <tr>
+                    <th>Search query</th>
+                    <th>URL encoded query</th>
+                  </tr>
+                  <tr></tr>
+                  </thead>
+                  <tbody>
+                  <tr>
+                    <td>#haiku #poetry</td>
+                    <td>%23haiku+%23poetry</td>
+                  </tr>
+                  <tr>
+                    <td>“happy hour” :)</td>
+                    <td>%22happy%20hour%22%20%3A%29</td>
+                  </tr>
+                  </tbody>
+                </table>
+                <p>Note that the space character can be represented by “%20” or “+” sign.</p>
 
-                                <h2>Additional parameters</h2>
+                <h2>Additional parameters</h2>
 
-                                <p>There is a set of additional parameters that allows a better control of the search results. The <a href="endpoint/Twitter/GET/search/tweets">GET search/tweets</a> documentation has detailed information about the usage of
-                                    the parameters, this section will only give a brief description of their capabilities:</p>
-                                <ul>
-                                    <li><strong>Result Type</strong>: just like twitter.com/search results, the <code>result_type</code> parameter allow to choose if the result set will be represented by recent or popular Tweets, or even a mix of both.
-                                    </li>
-                                    <li><strong>Geolocalization</strong>: The search operator “near” isn’t available in API, but there is a more precise way to restrict your query by a given location using the <code>geocode</code> parameter specified with
-                                        the template “latitude,longitude,radius”, for example, “37.781157,-122.398720,1mi”. When conducting geo searches, the search API will first attempt to find tweets which have lat/long within the queried geocode, and
-                                        in case of not having success, it will attempt to find tweets created by users whose profile location can be reverse geocoded into a lat/long within the queried geocode, meaning that is possible to receive tweets
-                                        which do not include lat/long information.
-                                    </li>
-                                    <li><strong>Language</strong>: the <code>lang</code> parameter restricts tweets to the given language.</li>
-                                    <li><strong>Iterating in a result set</strong>: parameters such <code>count</code>, <code>until</code>, <code>since_id</code>, <code>max_id</code> allow to control how we iterate through search results, since it could be
-                                        a large set of tweets. The <a href="/rest/public/timelines">Working with Timelines</a> documentation is a very rich and illustrative tutorial to learn how to use these parameters to achieve the best efficiency and
-                                        reliability when processing result sets.
-                                    </li>
-                                </ul>
-                                <h2>Rate limits</h2>
+                <p>There is a set of additional parameters that allows a better control of the search results. The <a href="endpoint/Twitter/GET/search/tweets">GET
+                  search/tweets</a> documentation has detailed information about the usage of
+                  the parameters, this section will only give a brief description of their capabilities:</p>
+                <ul>
+                  <li><strong>Result Type</strong>: just like twitter.com/search results, the <code>result_type</code> parameter allow to choose if the result set will be
+                    represented by recent or popular Tweets, or even a mix of both.
+                  </li>
+                  <li><strong>Geolocalization</strong>: The search operator “near” isn’t available in API, but there is a more precise way to restrict your query by a given
+                    location using the <code>geocode</code> parameter specified with
+                    the template “latitude,longitude,radius”, for example, “37.781157,-122.398720,1mi”. When conducting geo searches, the search API will first attempt to find
+                    tweets which have lat/long within the queried geocode, and
+                    in case of not having success, it will attempt to find tweets created by users whose profile location can be reverse geocoded into a lat/long within the queried
+                    geocode, meaning that is possible to receive tweets
+                    which do not include lat/long information.
+                  </li>
+                  <li><strong>Language</strong>: the <code>lang</code> parameter restricts tweets to the given language.</li>
+                  <li><strong>Iterating in a result set</strong>: parameters such <code>count</code>, <code>until</code>, <code>since_id</code>, <code>max_id</code> allow to
+                    control how we iterate through search results, since it could be
+                    a large set of tweets. The <a href="/rest/public/timelines">Working with Timelines</a> documentation is a very rich and illustrative tutorial to learn how to
+                    use these parameters to achieve the best efficiency and
+                    reliability when processing result sets.
+                  </li>
+                </ul>
+                <h2>Rate limits</h2>
 
-                                <p>The <a href="endpoint/Twitter/GET/search/tweets">GET search/tweets</a> is part of the Twitter REST API 1.1 and is rate limited similarly to other v1.1 methods. See <a href="/rest/public/rate-limiting">REST API Rate
-                                    Limiting in v1.1</a> for information on that model. At this time, users represented by access tokens can make 180 requests/queries per 15 minutes. Using <a href="/oauth/application-only">application-only auth</a>, an
-                                    application can make 450 queries/requests per 15 minutes on its own behalf without a user context.</p>
+                <p>The <a href="endpoint/Twitter/GET/search/tweets">GET search/tweets</a> is part of the Twitter REST API 1.1 and is rate limited similarly to other v1.1 methods.
+                  See <a href="/rest/public/rate-limiting">REST API Rate
+                    Limiting in v1.1</a> for information on that model. At this time, users represented by access tokens can make 180 requests/queries per 15 minutes. Using <a
+                          href="/oauth/application-only">application-only auth</a>, an
+                  application can make 450 queries/requests per 15 minutes on its own behalf without a user context.</p>
 
-                                <h2>Best practices</h2>
-                                <ul>
-                                    <li>Ensure all parameters are properly <a href="http://en.wikipedia.org/wiki/URL_encoding">URL encoded</a>.</li>
-                                    <li>Limit your searches to 10 keywords and operators.</li>
-                                    <li>Queries can be limited due to complexity. If this happens the Search API will respond with the error: <code>{"error":"Sorry, your query is too complex. Please reduce complexity and try again."}</code>.</li>
-                                    <li>The Search API is not complete index of all Tweets, but instead an index of recent Tweets. At the moment that index includes between 6-9 days of Tweets.</li>
-                                </ul>
-                                <h2>Example searches</h2>
+                <h2>Best practices</h2>
+                <ul>
+                  <li>Ensure all parameters are properly <a href="http://en.wikipedia.org/wiki/URL_encoding">URL encoded</a>.</li>
+                  <li>Limit your searches to 10 keywords and operators.</li>
+                  <li>Queries can be limited due to complexity. If this happens the Search API will respond with the error: <code>{"error":"Sorry, your query is too complex. Please
+                    reduce complexity and try again."}</code>.
+                  </li>
+                  <li>The Search API is not complete index of all Tweets, but instead an index of recent Tweets. At the moment that index includes between 6-9 days of Tweets.</li>
+                </ul>
+                <h2>Example searches</h2>
 
-                                <h3>When you are following an event that’s currently happening, you would be interested in search for recent tweets using the event hashtag:</h3>
-                                <ul>
-                                    <li>You want: recent tweets that contain the hashtag #superbowl</li>
-                                    <li>Your search URL is: https://api.twitter.com/1.1/search/tweets.json?<strong>q=%23superbowl&amp;result_type=recent</strong></li>
-                                </ul>
-                                <h3>When you want to know what tweets are coming from a specific location, with a specific language:</h3>
-                                <ul>
-                                    <li>You want: all recent tweets done in Portuguese, near Maracanã soccer stadium in Rio de Janeiro</li>
-                                    <li>Your search URL is: https://api.twitter.com/1.1/search/tweets.json?<strong>q=&amp;geocode=-22.912214,-43.230182,1km&amp;lang=pt&amp;result_type=recent</strong></li>
-                                </ul>
-                                <h3>When you want the most popular tweets of a specific user using a hashtag:</h3>
-                                <ul>
-                                    <li>You want: popular tweets from @Cmdr_Hadfield mentioning the hashtag #nasa</li>
-                                    <li>Your search URL is: https://api.twitter.com/1.1/search/tweets.json?<strong>q=from%3ACmdr_Hadfield%20%23nasa&amp;result_type=popular</strong></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <h3>When you are following an event that’s currently happening, you would be interested in search for recent tweets using the event hashtag:</h3>
+                <ul>
+                  <li>You want: recent tweets that contain the hashtag #superbowl</li>
+                  <li>Your search URL is: https://api.twitter.com/1.1/search/tweets.json?<strong>q=%23superbowl&amp;result_type=recent</strong></li>
+                </ul>
+                <h3>When you want to know what tweets are coming from a specific location, with a specific language:</h3>
+                <ul>
+                  <li>You want: all recent tweets done in Portuguese, near Maracanã soccer stadium in Rio de Janeiro</li>
+                  <li>Your search URL is:
+                    https://api.twitter.com/1.1/search/tweets.json?<strong>q=&amp;geocode=-22.912214,-43.230182,1km&amp;lang=pt&amp;result_type=recent</strong></li>
+                </ul>
+                <h3>When you want the most popular tweets of a specific user using a hashtag:</h3>
+                <ul>
+                  <li>You want: popular tweets from @Cmdr_Hadfield mentioning the hashtag #nasa</li>
+                  <li>Your search URL is: https://api.twitter.com/1.1/search/tweets.json?<strong>q=from%3ACmdr_Hadfield%20%23nasa&amp;result_type=popular</strong></li>
+                </ul>
+              </div>
             </div>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 </article>

@@ -15,7 +15,9 @@ import com.tomitribe.wadlx.api.Description;
 import com.tomitribe.wadlx.api.See;
 import com.tomitribe.wadlx.api.SeeAlso;
 import com.tomitribe.wadlx.api.Tag;
+import org.tomitribe.firedrill.rs.ResponseFunction;
 
+import javax.inject.Inject;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -25,16 +27,19 @@ import javax.ws.rs.core.Response;
 @Path("/oauth2")
 public class Oauth2Resource {
 
+    @Inject
+    private ResponseFunction function;
+
     @POST
     @Produces("application/json")
     @Path("/invalidate_token")
     @ApiVersion({"1.1"})
-    @SeeAlso({@See(href="endpoint/Twitter/POST/oauth2/token", value = "POST oauth2/token")})
+    @SeeAlso({@See(href = "endpoint/Twitter/POST/oauth2/token", value = "POST oauth2/token")})
     @Description("Allows a registered application to revoke an issued OAuth 2 Bearer Token by presenting its client credentials. Once a Bearer Token has been invalidated, new creation attempts will yield a different Bearer Token and usage of the invalidated token will no longer be allowed. As with all API v1.1 methods, HTTPS is always required.")
     public Response postInvalidate_token(@Description("The value of the bearer token to revoke.")
                                          @PathParam("access_token") final String access_token) {
         //TODO: implement
-        return null;
+        return function.get();
     }
 
     @POST
@@ -42,12 +47,12 @@ public class Oauth2Resource {
     @Path("/token")
     @ApiVersion({"1.1"})
     @Tag({"OAuth"})
-    @SeeAlso({@See(href="endpoint/Twitter/POST/oauth2/invalidate_token", value = "POST oauth2/invalidate_token")})
+    @SeeAlso({@See(href = "endpoint/Twitter/POST/oauth2/invalidate_token", value = "POST oauth2/invalidate_token")})
     @Description("Allows a registered application to obtain an OAuth 2 Bearer Token, which can be used to make API requests on an application&#039;s own behalf, without a user context. This is called Application-only authentication. A Bearer Token may be invalidated using oauth2/invalidate_token.")
     public Response postToken(@Description("Specifies the type of grant being requested by the application. At this time, only <tt>client_credentials</tt> is allowed. See <a href=\"https://dev.twitter.com/docs/auth/application-only-auth\">Application-only authentication</a> for more information.")
                               @PathParam("grant_type") final String grant_type) {
         //TODO: implement
-        return null;
+        return function.get();
     }
 
 }

@@ -19,8 +19,9 @@ import com.tomitribe.wadlx.api.Description;
 import com.tomitribe.wadlx.api.See;
 import com.tomitribe.wadlx.api.SeeAlso;
 import com.tomitribe.wadlx.api.Tag;
-import com.twitter.dev.api.UsersType;
+import org.tomitribe.firedrill.rs.ResponseFunction;
 
+import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -32,17 +33,20 @@ import javax.ws.rs.core.Response;
 @Path("/account")
 public class AccountResource {
 
+    @Inject
+    private ResponseFunction function;
+
     @GET
     @Produces("application/json")
     @Path("/settings")
     @Category({"account"})
     @ApiVersion({"1.1"})
-    @See(href="endpoint/Twitter/GET/account/settings", value = "GET account/settings")
+    @See(href = "endpoint/Twitter/GET/account/settings", value = "GET account/settings")
     @UserLimit(rate = @Rate(window = 15, unit = GovernanceUnit.MINUTES, limit = 15))
     @Description("Returns settings (including current trend, geo and sleep time information) for the authenticating user.")
     public Response getSettings() {
         //TODO: implement
-        return null;
+        return function.get();
     }
 
     @POST
@@ -50,7 +54,7 @@ public class AccountResource {
     @Path("/settings")
     @Category({"account"})
     @ApiVersion({"1.1"})
-    @See(href="endpoint/Twitter/GET/account/settings", value = "GET account/settings")
+    @See(href = "endpoint/Twitter/GET/account/settings", value = "GET account/settings")
     @UserLimit(rate = @Rate(window = 15, unit = GovernanceUnit.MINUTES, limit = 15))
     @Description("Returns settings (including current trend, geo and sleep time information) for the authenticating user.")
     public Response postSettings(@Description("The Yahoo! Where On Earth ID to use as the user's default trend location. Global information is available by using 1 as the WOEID. The woeid must be one of the locations returned by <a href=\"https://dev.twitter.com/docs/api/1/get/trends/available\">GET trends/available</a>.")
@@ -62,7 +66,7 @@ public class AccountResource {
                                  @QueryParam("time_zone") final String time_zone, @Description("The language which Twitter should render in for this user. The language must be specified by the appropriate two letter ISO 639-1 representation. Currently supported languages are provided by <a href=\"https://dev.twitter.com/docs/api/1/get/help/languages\">GET help/languages</a>. ")
                                  @QueryParam("lang") final String lang) {
         //TODO: implement
-        return null;
+        return function.get();
     }
 
     @GET
@@ -70,14 +74,14 @@ public class AccountResource {
     @Path("/verify_credentials")
     @Category({"account"})
     @ApiVersion({"1.1"})
-    @See(href="endpoint/Twitter/GET/account/settings", value = "GET account/settings")
+    @See(href = "endpoint/Twitter/GET/account/settings", value = "GET account/settings")
     @UserLimit(rate = @Rate(window = 15, unit = GovernanceUnit.MINUTES, limit = 15))
     @Description("Returns an HTTP 200 OK response code and a representation of the requesting user if authentication was successful; returns a 401 status code and an error message if not. Use this method to test if supplied user credentials are valid.")
-    public UsersType getVerify_credentials(@Description("The <tt>entities</tt> node will not be included when set to <tt>false</tt>.")
-                                           @QueryParam("include_entities") final Boolean include_entities, @Description("When set to either <tt>true</tt>, <tt>t</tt> or <tt>1</tt> statuses will not be included in the returned user objects.")
-                                           @QueryParam("skip_status") final Boolean skip_status) {
+    public Response getVerify_credentials(@Description("The <tt>entities</tt> node will not be included when set to <tt>false</tt>.")
+                                          @QueryParam("include_entities") final Boolean include_entities, @Description("When set to either <tt>true</tt>, <tt>t</tt> or <tt>1</tt> statuses will not be included in the returned user objects.")
+                                          @QueryParam("skip_status") final Boolean skip_status) {
         //TODO: implement
-        return null;
+        return function.get();
     }
 
     @POST
@@ -85,12 +89,12 @@ public class AccountResource {
     @Path("/remove_profile_banner")
     @ApiVersion({"1.1"})
     @SeeAlso({
-            @See(href="endpoint/Twitter/POST/account/update_profile_banner", value = "POST account/update_profile_banner"),
-            @See(href="endpoint/Twitter/GET/users/profile_banner", value = "GET users/profile_banner")})
+            @See(href = "endpoint/Twitter/POST/account/update_profile_banner", value = "POST account/update_profile_banner"),
+            @See(href = "endpoint/Twitter/GET/users/profile_banner", value = "GET users/profile_banner")})
     @Description("Removes the uploaded profile banner for the authenticating user. Returns HTTP 200 upon success.")
     public Response postRemove_profile_banner() {
         //TODO: implement
-        return null;
+        return function.get();
     }
 
     @POST
@@ -103,7 +107,7 @@ public class AccountResource {
                                                @PathParam("device") final String device, @Description("When set to either <tt>true</tt>, <tt>t</tt> or <tt>1</tt>, each tweet will include a node called \"entities,\". This node offers a variety of metadata about the tweet in a discreet structure, including: user_mentions, urls, and hashtags. While entities are opt-in on timelines at present, they will be made a default component of output in the future. See <strong><u><a href=\"/pages/tweet_entities\">Tweet Entities</a></u></strong> for more detail on entities.")
                                                @QueryParam("include_entities") final Boolean include_entities) {
         //TODO: implement
-        return null;
+        return function.get();
     }
 
     @POST
@@ -121,7 +125,7 @@ public class AccountResource {
                                        @QueryParam("include_entities") final Boolean include_entities, @Description("When set to either <tt>true</tt>, <tt>t</tt> or <tt>1</tt> statuses will not be included in the returned user objects.")
                                        @QueryParam("skip_status") final String skip_status) {
         //TODO: implement
-        return null;
+        return function.get();
     }
 
     @POST
@@ -138,7 +142,7 @@ public class AccountResource {
                                                         @Description("Determines whether to display the profile background image or not. When set to <tt>true</tt>, <tt>t</tt> or <tt>1</tt> the background image will be displayed if an image is being uploaded with the request, or has been uploaded previously. An error will be returned if you try to <tt>use</tt> a background image when one is not being uploaded or does not exist. If this parameter is defined but set to anything other than <tt>true</tt>, <tt>t</tt> or <tt>1</tt>, the background image will stop being used.")
                                                         @QueryParam("use") final String use) {
         //TODO: implement
-        return null;
+        return function.get();
     }
 
     @POST
@@ -146,9 +150,9 @@ public class AccountResource {
     @Path("/update_profile_banner")
     @ApiVersion({"1.1"})
     @Tag({"profile banner", "profiles"})
-    @SeeAlso({@See(href="endpoint/Twitter/POST/account/remove_profile_banner", value = "POST account/remove_profile_banner"),
-            @See(href="endpoint/Twitter/POST/account/update_profile_background_image", value = "POST account/update_profile_background_image"),
-            })
+    @SeeAlso({@See(href = "endpoint/Twitter/POST/account/remove_profile_banner", value = "POST account/remove_profile_banner"),
+            @See(href = "endpoint/Twitter/POST/account/update_profile_background_image", value = "POST account/update_profile_background_image"),
+    })
     @Description("Uploads a profile banner on behalf of the authenticating user. For best results, upload an")
     public Response postUpdate_profile_banner(@Description("The Base64-encoded or raw image data being uploaded as the user's new profile banner.")
                                               @PathParam("banner") final String banner, @Description("The width of the preferred section of the image being uploaded in pixels. Use with <tt>height</tt>, <tt>offset_left</tt>, and <tt>offset_top</tt> to select the desired region of the image to use.")
@@ -158,7 +162,7 @@ public class AccountResource {
                                               @Description("The number of pixels by which to offset the uploaded image from the top. Use with <tt>height</tt>, <tt>width</tt>, and <tt>offset_left</tt> to select the desired region of the image to use.")
                                               @QueryParam("offset_top") final String offset_top) {
         //TODO: implement
-        return null;
+        return function.get();
     }
 
     @POST
@@ -177,7 +181,7 @@ public class AccountResource {
                                               @QueryParam("include_entities") final Boolean include_entities, @Description("When set to either <tt>true</tt>, <tt>t</tt> or <tt>1</tt> statuses will not be included in the returned user objects.")
                                               @QueryParam("skip_status") final String skip_status) {
         //TODO: implement
-        return null;
+        return function.get();
     }
 
     @POST
@@ -185,14 +189,14 @@ public class AccountResource {
     @Path("/update_profile_image")
     @Category({"account"})
     @ApiVersion({"1.1"})
-    @SeeAlso({@See(href="endpoint/Twitter/GET/users/lookup", value = "GET users/lookup")})
+    @SeeAlso({@See(href = "endpoint/Twitter/GET/users/lookup", value = "GET users/lookup")})
     @Description("Updates the authenticating user&#039;s profile image. Note that this method expects raw multipart data, not a URL to an image. This method asynchronously processes the uploaded file before updating the user&#039;s profile image URL.")
     public Response postUpdate_profile_image(@Description("The avatar image for the profile, base64-encoded. Must be a valid GIF, JPG, or PNG image of less than 700 kilobytes in size. Images with width larger than 500 pixels will be scaled down. Animated GIFs will be converted to a static GIF of the first frame, removing the animation.")
                                              @PathParam("image") final String image, @Description("The <tt>entities</tt> node will not be included when set to <tt>false</tt>.")
                                              @QueryParam("include_entities") final Boolean include_entities, @Description("When set to either <tt>true</tt>, <tt>t</tt> or <tt>1</tt> statuses will not be included in the returned user objects.")
                                              @QueryParam("skip_status") final String skip_status) {
         //TODO: implement
-        return null;
+        return function.get();
     }
 
 }

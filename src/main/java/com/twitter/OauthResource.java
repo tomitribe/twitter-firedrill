@@ -12,10 +12,10 @@ package com.twitter;
 
 import com.tomitribe.wadlx.api.ApiVersion;
 import com.tomitribe.wadlx.api.Description;
-import com.tomitribe.wadlx.api.See;
-import com.tomitribe.wadlx.api.SeeAlso;
 import com.tomitribe.wadlx.api.Tag;
+import org.tomitribe.firedrill.rs.ResponseFunction;
 
+import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -24,6 +24,9 @@ import javax.ws.rs.QueryParam;
 
 @Path("/oauth")
 public class OauthResource {
+
+    @Inject
+    private ResponseFunction function;
 
     @GET
     @Path("/authenticate")

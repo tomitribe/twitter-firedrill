@@ -20,9 +20,9 @@ import com.tomitribe.wadlx.api.Description;
 import com.tomitribe.wadlx.api.See;
 import com.tomitribe.wadlx.api.SeeAlso;
 import com.tomitribe.wadlx.api.Tag;
-import com.twitter.dev.api.TweetsType;
-import com.twitter.dev.api.UsersType;
+import org.tomitribe.firedrill.rs.ResponseFunction;
 
+import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -33,6 +33,9 @@ import javax.ws.rs.core.Response;
 
 @Path("/lists")
 public class ListsResource {
+
+    @Inject
+    private ResponseFunction function;
 
     @GET
     @Produces("application/json")
@@ -47,7 +50,7 @@ public class ListsResource {
                             @QueryParam("screen_name") final String screen_name, @Description("Set this to <tt>true</tt> if you would like owned lists to be returned first. See description above for information on how this parameter works.")
                             @QueryParam("reverse") final Boolean reverse) {
         //TODO: implement
-        return null;
+        return function.get();
     }
 
     @GET
@@ -56,19 +59,19 @@ public class ListsResource {
     @Category({"lists"})
     @ApiVersion({"1.1"})
     @Tag({"List Members", "list management"})
-    @See(href="endpoint/Twitter/GET/lists/members/show", value = "GET lists/members/show")
+    @See(href = "endpoint/Twitter/GET/lists/members/show", value = "GET lists/members/show")
     @Description("Returns the members of the specified list. Private list members will only be shown if the authenticated user owns the specified list.")
-    public UsersType getMembers(@Description("The numerical <tt>id</tt> of the list.")
-                                @PathParam("list_id") final String list_id, @Description("You can identify a list by its slug instead of its numerical id. If you decide to do so, note that you'll also have to specify the list owner using the <tt>owner_id</tt> or <tt>owner_screen_name</tt> parameters.")
-                                @PathParam("slug") final String slug, @Description("The screen name of the user who owns the list being requested by a <tt>slug</tt>.")
-                                @QueryParam("owner_screen_name") final String owner_screen_name, @Description("The user ID of the user who owns the list being requested by a <tt>slug</tt>.")
-                                @QueryParam("owner_id") final String owner_id,
-                                @Description("Causes the collection of list members to be broken into \"pages\" of somewhat consistent size. If no cursor is provided, a value of <tt>-1</tt> will be assumed, which is the first \"page.\"<br /><br /> The response from the API will include a <tt>previous_cursor</tt> and <tt>next_cursor</tt> to allow paging back and forth. See <a href=\"https://dev.twitter.com/docs/misc/cursoring\">Using cursors to navigate collections</a> for more information.")
-                                @QueryParam("cursor") final String cursor, @Description("The <tt>entities</tt> node will be disincluded when set to <tt>false</tt>.")
-                                @QueryParam("include_entities") final Boolean include_entities, @Description("When set to either <tt>true</tt>, <tt>t</tt> or <tt>1</tt> statuses will not be included in the returned user objects.")
-                                @QueryParam("skip_status") final String skip_status) {
+    public Response getMembers(@Description("The numerical <tt>id</tt> of the list.")
+                               @PathParam("list_id") final String list_id, @Description("You can identify a list by its slug instead of its numerical id. If you decide to do so, note that you'll also have to specify the list owner using the <tt>owner_id</tt> or <tt>owner_screen_name</tt> parameters.")
+                               @PathParam("slug") final String slug, @Description("The screen name of the user who owns the list being requested by a <tt>slug</tt>.")
+                               @QueryParam("owner_screen_name") final String owner_screen_name, @Description("The user ID of the user who owns the list being requested by a <tt>slug</tt>.")
+                               @QueryParam("owner_id") final String owner_id,
+                               @Description("Causes the collection of list members to be broken into \"pages\" of somewhat consistent size. If no cursor is provided, a value of <tt>-1</tt> will be assumed, which is the first \"page.\"<br /><br /> The response from the API will include a <tt>previous_cursor</tt> and <tt>next_cursor</tt> to allow paging back and forth. See <a href=\"https://dev.twitter.com/docs/misc/cursoring\">Using cursors to navigate collections</a> for more information.")
+                               @QueryParam("cursor") final String cursor, @Description("The <tt>entities</tt> node will be disincluded when set to <tt>false</tt>.")
+                               @QueryParam("include_entities") final Boolean include_entities, @Description("When set to either <tt>true</tt>, <tt>t</tt> or <tt>1</tt> statuses will not be included in the returned user objects.")
+                               @QueryParam("skip_status") final String skip_status) {
         //TODO: implement
-        return null;
+        return function.get();
     }
 
     @GET
@@ -79,18 +82,18 @@ public class ListsResource {
     @ApplicationLimit(rate = @Rate(window = 15, unit = GovernanceUnit.MINUTES, limit = 15))
     @UserLimit(rate = @Rate(window = 15, unit = GovernanceUnit.MINUTES, limit = 15))
     @Description("Check if the specified user is a member of the specified list.")
-    public UsersType getMembersshow(@Description("The numerical <tt>id</tt> of the list.")
-                                    @PathParam("list_id") final String list_id, @Description("You can identify a list by its slug instead of its numerical id. If you decide to do so, note that you'll also have to specify the list owner using the <tt>owner_id</tt> or <tt>owner_screen_name</tt> parameters.")
-                                    @PathParam("slug") final String slug, @Description("The ID of the user for whom to return results for. Helpful for disambiguating when a valid user ID is also a valid screen name.")
-                                    @PathParam("user_id") final String user_id, @Description("The screen name of the user for whom to return results for. Helpful for disambiguating when a valid screen name is also a user ID.")
-                                    @PathParam("screen_name") final String screen_name,
-                                    @Description("The screen name of the user who owns the list being requested by a <tt>slug</tt>.")
-                                    @QueryParam("owner_screen_name") final String owner_screen_name, @Description("The user ID of the user who owns the list being requested by a <tt>slug</tt>.")
-                                    @QueryParam("owner_id") final String owner_id, @Description("When set to either <tt>true</tt>, <tt>t</tt> or <tt>1</tt>, each tweet will include a node called \"entities\". This node offers a variety of metadata about the tweet in a discreet structure, including: user_mentions, urls, and hashtags. While entities are opt-in on timelines at present, they will be made a default component of output in the future. See <strong><u><a href=\"/pages/tweet_entities\">Tweet Entities</a></u></strong> for more details.")
-                                    @QueryParam("include_entities") final String include_entities, @Description("When set to either <tt>true</tt>, <tt>t</tt> or <tt>1</tt> statuses will not be included in the returned user objects.")
-                                    @QueryParam("skip_status") final String skip_status) {
+    public Response getMembersshow(@Description("The numerical <tt>id</tt> of the list.")
+                                   @PathParam("list_id") final String list_id, @Description("You can identify a list by its slug instead of its numerical id. If you decide to do so, note that you'll also have to specify the list owner using the <tt>owner_id</tt> or <tt>owner_screen_name</tt> parameters.")
+                                   @PathParam("slug") final String slug, @Description("The ID of the user for whom to return results for. Helpful for disambiguating when a valid user ID is also a valid screen name.")
+                                   @PathParam("user_id") final String user_id, @Description("The screen name of the user for whom to return results for. Helpful for disambiguating when a valid screen name is also a user ID.")
+                                   @PathParam("screen_name") final String screen_name,
+                                   @Description("The screen name of the user who owns the list being requested by a <tt>slug</tt>.")
+                                   @QueryParam("owner_screen_name") final String owner_screen_name, @Description("The user ID of the user who owns the list being requested by a <tt>slug</tt>.")
+                                   @QueryParam("owner_id") final String owner_id, @Description("When set to either <tt>true</tt>, <tt>t</tt> or <tt>1</tt>, each tweet will include a node called \"entities\". This node offers a variety of metadata about the tweet in a discreet structure, including: user_mentions, urls, and hashtags. While entities are opt-in on timelines at present, they will be made a default component of output in the future. See <strong><u><a href=\"/pages/tweet_entities\">Tweet Entities</a></u></strong> for more details.")
+                                   @QueryParam("include_entities") final String include_entities, @Description("When set to either <tt>true</tt>, <tt>t</tt> or <tt>1</tt> statuses will not be included in the returned user objects.")
+                                   @QueryParam("skip_status") final String skip_status) {
         //TODO: implement
-        return null;
+        return function.get();
     }
 
     @POST
@@ -100,16 +103,16 @@ public class ListsResource {
     @ApiVersion({"1.1"})
 
     @Description("Add a member to a list. The authenticated user must own the list to be able to add members to it. Note that lists can&#039;t have more than 500 members.")
-    public UsersType postMemberscreate(@Description("The numerical <tt>id</tt> of the list.")
-                                       @PathParam("list_id") final String list_id, @Description("You can identify a list by its slug instead of its numerical id. If you decide to do so, note that you'll also have to specify the list owner using the <tt>owner_id</tt> or <tt>owner_screen_name</tt> parameters.")
-                                       @PathParam("slug") final String slug, @Description("The ID of the user for whom to return results for. Helpful for disambiguating when a valid user ID is also a valid screen name.")
-                                       @PathParam("user_id") final String user_id, @Description("The screen name of the user for whom to return results for. Helpful for disambiguating when a valid screen name is also a user ID.")
-                                       @PathParam("screen_name") final String screen_name,
-                                       @Description("The screen name of the user who owns the list being requested by a <tt>slug</tt>.")
-                                       @QueryParam("owner_screen_name") final String owner_screen_name, @Description("The user ID of the user who owns the list being requested by a <tt>slug</tt>.")
-                                       @QueryParam("owner_id") final String owner_id) {
+    public Response postMemberscreate(@Description("The numerical <tt>id</tt> of the list.")
+                                      @PathParam("list_id") final String list_id, @Description("You can identify a list by its slug instead of its numerical id. If you decide to do so, note that you'll also have to specify the list owner using the <tt>owner_id</tt> or <tt>owner_screen_name</tt> parameters.")
+                                      @PathParam("slug") final String slug, @Description("The ID of the user for whom to return results for. Helpful for disambiguating when a valid user ID is also a valid screen name.")
+                                      @PathParam("user_id") final String user_id, @Description("The screen name of the user for whom to return results for. Helpful for disambiguating when a valid screen name is also a user ID.")
+                                      @PathParam("screen_name") final String screen_name,
+                                      @Description("The screen name of the user who owns the list being requested by a <tt>slug</tt>.")
+                                      @QueryParam("owner_screen_name") final String owner_screen_name, @Description("The user ID of the user who owns the list being requested by a <tt>slug</tt>.")
+                                      @QueryParam("owner_id") final String owner_id) {
         //TODO: implement
-        return null;
+        return function.get();
     }
 
     @POST
@@ -118,16 +121,16 @@ public class ListsResource {
     @Category({"lists"})
     @ApiVersion({"1.1"})
     @Description("Adds multiple members to a list, by specifying a comma-separated list of member ids or screen names. The authenticated user must own the list to be able to add members to it. Note that lists can&#039;t have more than 5,000 members, and you are limited to adding up to 100 members to a list at a time with this method.")
-    public UsersType postMemberscreate_all(@Description("The numerical <tt>id</tt> of the list.")
-                                           @PathParam("list_id") final String list_id, @Description("You can identify a list by its slug instead of its numerical id. If you decide to do so, note that you'll also have to specify the list owner using the <tt>owner_id</tt> or <tt>owner_screen_name</tt> parameters.")
-                                           @PathParam("slug") final String slug, @Description("A comma separated list of user IDs, up to 100 are allowed in a single request.")
-                                           @QueryParam("user_id") final String user_id, @Description("A comma separated list of screen names, up to 100 are allowed in a single request.")
-                                           @QueryParam("screen_name") final String screen_name,
-                                           @Description("The screen name of the user who owns the list being requested by a <tt>slug</tt>.")
-                                           @QueryParam("owner_screen_name") final String owner_screen_name, @Description("The user ID of the user who owns the list being requested by a <tt>slug</tt>.")
-                                           @QueryParam("owner_id") final String owner_id) {
+    public Response postMemberscreate_all(@Description("The numerical <tt>id</tt> of the list.")
+                                          @PathParam("list_id") final String list_id, @Description("You can identify a list by its slug instead of its numerical id. If you decide to do so, note that you'll also have to specify the list owner using the <tt>owner_id</tt> or <tt>owner_screen_name</tt> parameters.")
+                                          @PathParam("slug") final String slug, @Description("A comma separated list of user IDs, up to 100 are allowed in a single request.")
+                                          @QueryParam("user_id") final String user_id, @Description("A comma separated list of screen names, up to 100 are allowed in a single request.")
+                                          @QueryParam("screen_name") final String screen_name,
+                                          @Description("The screen name of the user who owns the list being requested by a <tt>slug</tt>.")
+                                          @QueryParam("owner_screen_name") final String owner_screen_name, @Description("The user ID of the user who owns the list being requested by a <tt>slug</tt>.")
+                                          @QueryParam("owner_id") final String owner_id) {
         //TODO: implement
-        return null;
+        return function.get();
     }
 
     @POST
@@ -145,7 +148,7 @@ public class ListsResource {
                                        @QueryParam("owner_screen_name") final String owner_screen_name, @Description("The user ID of the user who owns the list being requested by a <tt>slug</tt>.")
                                        @QueryParam("owner_id") final String owner_id) {
         //TODO: implement
-        return null;
+        return function.get();
     }
 
     @POST
@@ -164,7 +167,7 @@ public class ListsResource {
                                            @QueryParam("owner_screen_name") final String owner_screen_name, @Description("The user ID of the user who owns the list being requested by a <tt>slug</tt>.")
                                            @QueryParam("owner_id") final String owner_id) {
         //TODO: implement
-        return null;
+        return function.get();
     }
 
     @GET
@@ -172,7 +175,7 @@ public class ListsResource {
     @Path("/memberships")
     @Category({"lists"})
     @ApiVersion({"1.1"})
-    @SeeAlso({@See(href="endpoint/Twitter/GET/lists/statuses", value = "GET lists/statuses"), @See(href="endpoint/Twitter/GET/lists/list", value = "GET lists/list"), @See(href="endpoint/Twitter/GET/lists/memberships", value = "GET lists/memberships"), @See(href="endpoint/Twitter/GET/lists/ownerships", value = "GET lists/ownerships"), @See(href="endpoint/Twitter/GET/lists/subscriptions", value = "GET lists/subscriptions")})
+    @SeeAlso({@See(href = "endpoint/Twitter/GET/lists/statuses", value = "GET lists/statuses"), @See(href = "endpoint/Twitter/GET/lists/list", value = "GET lists/list"), @See(href = "endpoint/Twitter/GET/lists/memberships", value = "GET lists/memberships"), @See(href = "endpoint/Twitter/GET/lists/ownerships", value = "GET lists/ownerships"), @See(href = "endpoint/Twitter/GET/lists/subscriptions", value = "GET lists/subscriptions")})
     @ApplicationLimit(rate = @Rate(window = 15, unit = GovernanceUnit.MINUTES, limit = 15))
     @UserLimit(rate = @Rate(window = 15, unit = GovernanceUnit.MINUTES, limit = 15))
     @Description("Returns the lists the specified user has been added to. If user_id or screen_name are not provided the memberships for the authenticating user are returned.")
@@ -182,7 +185,7 @@ public class ListsResource {
                                    @QueryParam("cursor") final String cursor, @Description("When set to <tt>true</tt>, <tt>t</tt> or <tt>1</tt>, will return just lists the authenticating user owns, and the user represented by <tt>user_id</tt> or <tt>screen_name</tt> is a member of.")
                                    @QueryParam("filter_to_owned_lists") final String filter_to_owned_lists) {
         //TODO: implement
-        return null;
+        return function.get();
     }
 
     @GET
@@ -191,7 +194,7 @@ public class ListsResource {
     @Category({"lists"})
     @ApiVersion({"1.1"})
     @Tag({"finding lists", "list management"})
-    @SeeAlso({@See(href="endpoint/Twitter/GET/lists/memberships", value = "GET lists/memberships"), @See(href="endpoint/Twitter/GET/lists/list", value = "GET lists/list"), @See(href="endpoint/Twitter/GET/lists/subscriptions", value = "GET lists/subscriptions"), @See(href="endpoint/Twitter/GET/lists/statuses", value = "GET lists/statuses")})
+    @SeeAlso({@See(href = "endpoint/Twitter/GET/lists/memberships", value = "GET lists/memberships"), @See(href = "endpoint/Twitter/GET/lists/list", value = "GET lists/list"), @See(href = "endpoint/Twitter/GET/lists/subscriptions", value = "GET lists/subscriptions"), @See(href = "endpoint/Twitter/GET/lists/statuses", value = "GET lists/statuses")})
     @ApplicationLimit(rate = @Rate(window = 15, unit = GovernanceUnit.MINUTES, limit = 15))
     @UserLimit(rate = @Rate(window = 15, unit = GovernanceUnit.MINUTES, limit = 15))
     @Description("Returns the lists owned by the specified Twitter user. Private lists will only be shown if the authenticated user is also the owner of the lists.")
@@ -201,7 +204,7 @@ public class ListsResource {
                                   @QueryParam("count") final Integer count, @Description("Breaks the results into pages. Provide a value of <tt>-1</tt> to begin paging. Provide values as returned in the response body's <tt>next_cursor</tt> and <tt>previous_cursor</tt> attributes to page back and forth in the list. It is recommended to always use cursors when the method supports them. See <a href=\"https://dev.twitter.com/docs/misc/cursoring\">Using cursors to navigate collections</a> for more information.")
                                   @QueryParam("cursor") final String cursor) {
         //TODO: implement
-        return null;
+        return function.get();
     }
 
     @GET
@@ -218,7 +221,7 @@ public class ListsResource {
                             @QueryParam("owner_screen_name") final String owner_screen_name, @Description("The user ID of the user who owns the list being requested by a <tt>slug</tt>.")
                             @QueryParam("owner_id") final String owner_id) {
         //TODO: implement
-        return null;
+        return function.get();
     }
 
     @GET
@@ -226,24 +229,24 @@ public class ListsResource {
     @Path("/statuses")
     @Category({"lists"})
     @ApiVersion({"1.1"})
-    @SeeAlso({@See(href="endpoint/Twitter/GET/lists/list", value = "GET lists/list"), @See(href="endpoint/Twitter/GET/statuses/home_timeline", value = "GET statuses/home_timeline"), @See(href="endpoint/Twitter/GET/lists/subscriptions", value = "GET lists/subscriptions"), @See(href="endpoint/Twitter/GET/lists/memberships", value = "GET lists/memberships"), @See(href="endpoint/Twitter/GET/lists/ownerships", value = "GET lists/ownerships"), })
+    @SeeAlso({@See(href = "endpoint/Twitter/GET/lists/list", value = "GET lists/list"), @See(href = "endpoint/Twitter/GET/statuses/home_timeline", value = "GET statuses/home_timeline"), @See(href = "endpoint/Twitter/GET/lists/subscriptions", value = "GET lists/subscriptions"), @See(href = "endpoint/Twitter/GET/lists/memberships", value = "GET lists/memberships"), @See(href = "endpoint/Twitter/GET/lists/ownerships", value = "GET lists/ownerships"),})
     @ApplicationLimit(rate = @Rate(window = 15, unit = GovernanceUnit.MINUTES, limit = 180))
     @UserLimit(rate = @Rate(window = 15, unit = GovernanceUnit.MINUTES, limit = 180))
     @Description("Returns a timeline of tweets authored by members of the specified list. Retweets are included by default. Use the include_rts=false parameter to omit retweets. Embedded Timelines is a great way to embed list timelines on your website.")
-    public TweetsType getStatuses(@Description("The numerical <tt>id</tt> of the list.")
-                                  @PathParam("list_id") final String list_id, @Description("You can identify a list by its slug instead of its numerical id. If you decide to do so, note that you'll also have to specify the list owner using the <tt>owner_id</tt> or <tt>owner_screen_name</tt> parameters.")
-                                  @PathParam("slug") final String slug, @Description("The screen name of the user who owns the list being requested by a <tt>slug</tt>.")
-                                  @QueryParam("owner_screen_name") final String owner_screen_name, @Description("The user ID of the user who owns the list being requested by a <tt>slug</tt>.")
-                                  @QueryParam("owner_id") final String owner_id,
-                                  @Description("Returns results with an ID greater than (that is, more recent than) the specified ID. There are limits to the number of Tweets which can be accessed through the API. If the limit of Tweets has occured since the since_id, the since_id will be forced to the oldest ID available.")
-                                  @QueryParam("since_id") final String since_id, @Description("Returns results with an ID less than (that is, older than) or equal to the specified ID.")
-                                  @QueryParam("max_id") final String max_id, @Description("Specifies the number of results to retrieve per \"page.\"")
-                                  @QueryParam("count") final Integer count, @Description("Entities are ON by default in API 1.1, each tweet includes a node called \"entities\". This node offers a variety of metadata about the tweet in a discreet structure, including: user_mentions, urls, and hashtags. You can omit entities from the result by using <tt>include_entities=false</tt>")
-                                  @QueryParam("include_entities") final String include_entities,
-                                  @Description("When set to either <tt>true</tt>, <tt>t</tt> or <tt>1</tt>, the list timeline will contain native retweets (if they exist) in addition to the standard stream of tweets. The output format of retweeted tweets is identical to the representation you see in home_timeline.")
-                                  @QueryParam("include_rts") final String include_rts) {
+    public Response getStatuses(@Description("The numerical <tt>id</tt> of the list.")
+                                @PathParam("list_id") final String list_id, @Description("You can identify a list by its slug instead of its numerical id. If you decide to do so, note that you'll also have to specify the list owner using the <tt>owner_id</tt> or <tt>owner_screen_name</tt> parameters.")
+                                @PathParam("slug") final String slug, @Description("The screen name of the user who owns the list being requested by a <tt>slug</tt>.")
+                                @QueryParam("owner_screen_name") final String owner_screen_name, @Description("The user ID of the user who owns the list being requested by a <tt>slug</tt>.")
+                                @QueryParam("owner_id") final String owner_id,
+                                @Description("Returns results with an ID greater than (that is, more recent than) the specified ID. There are limits to the number of Tweets which can be accessed through the API. If the limit of Tweets has occured since the since_id, the since_id will be forced to the oldest ID available.")
+                                @QueryParam("since_id") final String since_id, @Description("Returns results with an ID less than (that is, older than) or equal to the specified ID.")
+                                @QueryParam("max_id") final String max_id, @Description("Specifies the number of results to retrieve per \"page.\"")
+                                @QueryParam("count") final Integer count, @Description("Entities are ON by default in API 1.1, each tweet includes a node called \"entities\". This node offers a variety of metadata about the tweet in a discreet structure, including: user_mentions, urls, and hashtags. You can omit entities from the result by using <tt>include_entities=false</tt>")
+                                @QueryParam("include_entities") final String include_entities,
+                                @Description("When set to either <tt>true</tt>, <tt>t</tt> or <tt>1</tt>, the list timeline will contain native retweets (if they exist) in addition to the standard stream of tweets. The output format of retweeted tweets is identical to the representation you see in home_timeline.")
+                                @QueryParam("include_rts") final String include_rts) {
         //TODO: implement
-        return null;
+        return function.get();
     }
 
     @GET
@@ -252,17 +255,17 @@ public class ListsResource {
     @Category({"lists"})
     @ApiVersion({"1.1"})
     @Description("Returns the subscribers of the specified list. Private list subscribers will only be shown if the authenticated user owns the specified list.")
-    public UsersType getSubscribers(@Description("The numerical <tt>id</tt> of the list.")
-                                    @PathParam("list_id") final String list_id, @Description("You can identify a list by its slug instead of its numerical id. If you decide to do so, note that you'll also have to specify the list owner using the <tt>owner_id</tt> or <tt>owner_screen_name</tt> parameters.")
-                                    @PathParam("slug") final String slug, @Description("The screen name of the user who owns the list being requested by a <tt>slug</tt>.")
-                                    @QueryParam("owner_screen_name") final String owner_screen_name, @Description("The user ID of the user who owns the list being requested by a <tt>slug</tt>.")
-                                    @QueryParam("owner_id") final String owner_id,
-                                    @Description("Breaks the results into pages. A single page contains 20 lists. Provide a value of <tt>-1</tt> to begin paging. Provide values as returned in the response body's <tt>next_cursor</tt> and <tt>previous_cursor</tt> attributes to page back and forth in the list.")
-                                    @QueryParam("cursor") final String cursor, @Description("When set to either <tt>true</tt>, <tt>t</tt> or <tt>1</tt>, each tweet will include a node called \"entities\". This node offers a variety of metadata about the tweet in a discreet structure, including: user_mentions, urls, and hashtags. While entities are opt-in on timelines at present, they will be made a default component of output in the future. See <strong><u><a href=\"/pages/tweet_entities\">Tweet Entities</a></u></strong> for more details.")
-                                    @QueryParam("include_entities") final String include_entities, @Description("When set to either <tt>true</tt>, <tt>t</tt> or <tt>1</tt> statuses will not be included in the returned user objects.")
-                                    @QueryParam("skip_status") final String skip_status) {
+    public Response getSubscribers(@Description("The numerical <tt>id</tt> of the list.")
+                                   @PathParam("list_id") final String list_id, @Description("You can identify a list by its slug instead of its numerical id. If you decide to do so, note that you'll also have to specify the list owner using the <tt>owner_id</tt> or <tt>owner_screen_name</tt> parameters.")
+                                   @PathParam("slug") final String slug, @Description("The screen name of the user who owns the list being requested by a <tt>slug</tt>.")
+                                   @QueryParam("owner_screen_name") final String owner_screen_name, @Description("The user ID of the user who owns the list being requested by a <tt>slug</tt>.")
+                                   @QueryParam("owner_id") final String owner_id,
+                                   @Description("Breaks the results into pages. A single page contains 20 lists. Provide a value of <tt>-1</tt> to begin paging. Provide values as returned in the response body's <tt>next_cursor</tt> and <tt>previous_cursor</tt> attributes to page back and forth in the list.")
+                                   @QueryParam("cursor") final String cursor, @Description("When set to either <tt>true</tt>, <tt>t</tt> or <tt>1</tt>, each tweet will include a node called \"entities\". This node offers a variety of metadata about the tweet in a discreet structure, including: user_mentions, urls, and hashtags. While entities are opt-in on timelines at present, they will be made a default component of output in the future. See <strong><u><a href=\"/pages/tweet_entities\">Tweet Entities</a></u></strong> for more details.")
+                                   @QueryParam("include_entities") final String include_entities, @Description("When set to either <tt>true</tt>, <tt>t</tt> or <tt>1</tt> statuses will not be included in the returned user objects.")
+                                   @QueryParam("skip_status") final String skip_status) {
         //TODO: implement
-        return null;
+        return function.get();
     }
 
     @GET
@@ -273,18 +276,18 @@ public class ListsResource {
     @ApplicationLimit(rate = @Rate(window = 15, unit = GovernanceUnit.MINUTES, limit = 15))
     @UserLimit(rate = @Rate(window = 15, unit = GovernanceUnit.MINUTES, limit = 15))
     @Description("Check if the specified user is a subscriber of the specified list. Returns the user if they are subscriber.")
-    public UsersType getSubscribersshow(@Description("The screen name of the user who owns the list being requested by a <tt>slug</tt>.")
-                                        @QueryParam("owner_screen_name") final String owner_screen_name, @Description("The user ID of the user who owns the list being requested by a <tt>slug</tt>.")
-                                        @QueryParam("owner_id") final String owner_id, @Description("The numerical <tt>id</tt> of the list.")
-                                        @PathParam("list_id") final String list_id, @Description("You can identify a list by its slug instead of its numerical id. If you decide to do so, note that you'll also have to specify the list owner using the <tt>owner_id</tt> or <tt>owner_screen_name</tt> parameters.")
-                                        @PathParam("slug") final String slug,
-                                        @Description("The ID of the user for whom to return results for. Helpful for disambiguating when a valid user ID is also a valid screen name.")
-                                        @PathParam("user_id") final String user_id, @Description("The screen name of the user for whom to return results for. Helpful for disambiguating when a valid screen name is also a user ID.")
-                                        @PathParam("screen_name") final String screen_name, @Description("When set to either <tt>true</tt>, <tt>t</tt> or <tt>1</tt>, each tweet will include a node called \"entities\". This node offers a variety of metadata about the tweet in a discreet structure, including: user_mentions, urls, and hashtags. While entities are opt-in on timelines at present, they will be made a default component of output in the future. See <strong><u><a href=\"/pages/tweet_entities\">Tweet Entities</a></u></strong> for more details.")
-                                        @QueryParam("include_entities") final String include_entities, @Description("When set to either <tt>true</tt>, <tt>t</tt> or <tt>1</tt> statuses will not be included in the returned user objects.")
-                                        @QueryParam("skip_status") final String skip_status) {
+    public Response getSubscribersshow(@Description("The screen name of the user who owns the list being requested by a <tt>slug</tt>.")
+                                       @QueryParam("owner_screen_name") final String owner_screen_name, @Description("The user ID of the user who owns the list being requested by a <tt>slug</tt>.")
+                                       @QueryParam("owner_id") final String owner_id, @Description("The numerical <tt>id</tt> of the list.")
+                                       @PathParam("list_id") final String list_id, @Description("You can identify a list by its slug instead of its numerical id. If you decide to do so, note that you'll also have to specify the list owner using the <tt>owner_id</tt> or <tt>owner_screen_name</tt> parameters.")
+                                       @PathParam("slug") final String slug,
+                                       @Description("The ID of the user for whom to return results for. Helpful for disambiguating when a valid user ID is also a valid screen name.")
+                                       @PathParam("user_id") final String user_id, @Description("The screen name of the user for whom to return results for. Helpful for disambiguating when a valid screen name is also a user ID.")
+                                       @PathParam("screen_name") final String screen_name, @Description("When set to either <tt>true</tt>, <tt>t</tt> or <tt>1</tt>, each tweet will include a node called \"entities\". This node offers a variety of metadata about the tweet in a discreet structure, including: user_mentions, urls, and hashtags. While entities are opt-in on timelines at present, they will be made a default component of output in the future. See <strong><u><a href=\"/pages/tweet_entities\">Tweet Entities</a></u></strong> for more details.")
+                                       @QueryParam("include_entities") final String include_entities, @Description("When set to either <tt>true</tt>, <tt>t</tt> or <tt>1</tt> statuses will not be included in the returned user objects.")
+                                       @QueryParam("skip_status") final String skip_status) {
         //TODO: implement
-        return null;
+        return function.get();
     }
 
     @POST
@@ -294,13 +297,13 @@ public class ListsResource {
     @ApiVersion({"1.1"})
 
     @Description("Subscribes the authenticated user to the specified list.")
-    public UsersType postSubscriberscreate(@Description("The screen name of the user who owns the list being requested by a <tt>slug</tt>.")
-                                           @QueryParam("owner_screen_name") final String owner_screen_name, @Description("The user ID of the user who owns the list being requested by a <tt>slug</tt>.")
-                                           @QueryParam("owner_id") final String owner_id, @Description("The numerical <tt>id</tt> of the list.")
-                                           @PathParam("list_id") final String list_id, @Description("You can identify a list by its slug instead of its numerical id. If you decide to do so, note that you'll also have to specify the list owner using the <tt>owner_id</tt> or <tt>owner_screen_name</tt> parameters.")
-                                           @PathParam("slug") final String slug) {
+    public Response postSubscriberscreate(@Description("The screen name of the user who owns the list being requested by a <tt>slug</tt>.")
+                                          @QueryParam("owner_screen_name") final String owner_screen_name, @Description("The user ID of the user who owns the list being requested by a <tt>slug</tt>.")
+                                          @QueryParam("owner_id") final String owner_id, @Description("The numerical <tt>id</tt> of the list.")
+                                          @PathParam("list_id") final String list_id, @Description("You can identify a list by its slug instead of its numerical id. If you decide to do so, note that you'll also have to specify the list owner using the <tt>owner_id</tt> or <tt>owner_screen_name</tt> parameters.")
+                                          @PathParam("slug") final String slug) {
         //TODO: implement
-        return null;
+        return function.get();
     }
 
     @POST
@@ -316,7 +319,7 @@ public class ListsResource {
                                            @QueryParam("owner_screen_name") final String owner_screen_name, @Description("The user ID of the user who owns the list being requested by a <tt>slug</tt>.")
                                            @QueryParam("owner_id") final String owner_id) {
         //TODO: implement
-        return null;
+        return function.get();
     }
 
     @GET
@@ -325,7 +328,7 @@ public class ListsResource {
     @Category({"lists"})
     @ApiVersion({"1.1"})
     @Tag({"Lists"})
-    @SeeAlso({@See(href="endpoint/Twitter/GET/lists/memberships", value = "GET lists/memberships"), @See(href="endpoint/Twitter/GET/lists/list", value = "GET lists/list"), @See(href="endpoint/Twitter/GET/lists/ownerships", value = "GET lists/ownerships"), @See(href="endpoint/Twitter/GET/lists/statuses", value = "GET lists/statuses")})
+    @SeeAlso({@See(href = "endpoint/Twitter/GET/lists/memberships", value = "GET lists/memberships"), @See(href = "endpoint/Twitter/GET/lists/list", value = "GET lists/list"), @See(href = "endpoint/Twitter/GET/lists/ownerships", value = "GET lists/ownerships"), @See(href = "endpoint/Twitter/GET/lists/statuses", value = "GET lists/statuses")})
     @ApplicationLimit(rate = @Rate(window = 15, unit = GovernanceUnit.MINUTES, limit = 15))
     @UserLimit(rate = @Rate(window = 15, unit = GovernanceUnit.MINUTES, limit = 15))
     @Description("Obtain a collection of the lists the specified user is subscribed to, 20 lists per page by default. Does not include the user&#039;s own lists.")
@@ -335,7 +338,7 @@ public class ListsResource {
                                      @QueryParam("count") final Integer count, @Description("Breaks the results into pages. Provide a value of <tt>-1</tt> to begin paging. Provide values as returned in the response body's <tt>next_cursor</tt> and <tt>previous_cursor</tt> attributes to page back and forth in the list. It is recommended to always use cursors when the method supports them. See <a href=\"https://dev.twitter.com/docs/misc/cursoring\">Using cursors to navigate collections</a> for more information.")
                                      @QueryParam("cursor") final String cursor) {
         //TODO: implement
-        return null;
+        return function.get();
     }
 
     @POST
@@ -350,7 +353,7 @@ public class ListsResource {
                                @QueryParam("mode") final String mode, @Description("The description to give the list.")
                                @QueryParam("description") final String description) {
         //TODO: implement
-        return null;
+        return function.get();
     }
 
     @POST
@@ -366,7 +369,7 @@ public class ListsResource {
                                 @PathParam("list_id") final String list_id, @Description("You can identify a list by its slug instead of its numerical id. If you decide to do so, note that you'll also have to specify the list owner using the <tt>owner_id</tt> or <tt>owner_screen_name</tt> parameters.")
                                 @PathParam("slug") final String slug) {
         //TODO: implement
-        return null;
+        return function.get();
     }
 
     @POST
@@ -386,7 +389,7 @@ public class ListsResource {
                                @QueryParam("owner_screen_name") final String owner_screen_name, @Description("The user ID of the user who owns the list being requested by a <tt>slug</tt>.")
                                @QueryParam("owner_id") final String owner_id) {
         //TODO: implement
-        return null;
+        return function.get();
     }
 
 }

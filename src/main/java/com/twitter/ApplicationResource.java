@@ -18,7 +18,9 @@ import com.tomitribe.wadlx.api.ApiVersion;
 import com.tomitribe.wadlx.api.Category;
 import com.tomitribe.wadlx.api.Description;
 import com.tomitribe.wadlx.api.Tag;
+import org.tomitribe.firedrill.rs.ResponseFunction;
 
+import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -27,6 +29,9 @@ import javax.ws.rs.core.Response;
 
 @Path("/application")
 public class ApplicationResource {
+
+    @Inject
+    private ResponseFunction function;
 
     @GET
     @Produces("application/json")
@@ -40,7 +45,7 @@ public class ApplicationResource {
     public Response getRate_limit_status(@Description("A comma-separated list of resource families you want to know the current rate limit disposition for. For best performance, only specify the resource families pertinent to your application.")
                                          @QueryParam("resources") final String resources) {
         //TODO: implement
-        return null;
+        return function.get();
     }
 
 }
