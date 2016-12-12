@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!--
+  Tomitribe Confidential
+
+  Copyright Tomitribe Corporation. 2014
+
+  The source code for this program is not published or otherwise divested
+  of its trade secrets, irrespective of what has been deposited with the
+  U.S. Copyright Office.
+-->
+<tomcat-users>
+
+  <user username="norman" password="9d4e1e23bd5b727046a9e3b4b7db57bd8d6ee684" roles="mans-best-friend, peanuts"/>
+
+  <user username="norm" password="9d4e1e23bd5b727046a9e3b4b7db57bd8d6ee684" roles="peanuts"/>
+
+</tomcat-users>
+
