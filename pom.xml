@@ -67,6 +67,61 @@
       <artifactId>firedrill</artifactId>
       <version>1.0-SNAPSHOT</version>
     </dependency>
+    <dependency>
+      <groupId>org.tomitribe</groupId>
+      <artifactId>sheldon-api</artifactId>
+      <version>${version.sheldon}</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.tomitribe</groupId>
+      <artifactId>sheldon-impl</artifactId>
+      <version>${version.sheldon}</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.tomitribe</groupId>
+      <artifactId>sheldon-rar</artifactId>
+      <version>${version.sheldon}</version>
+      <type>rar</type>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.tomitribe</groupId>
+      <artifactId>tomitribe-crest-api</artifactId>
+      <version>${version.crest}</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.tomitribe.tribestream</groupId>
+      <artifactId>tribestream</artifactId>
+      <version>${version.tribestream}</version>
+      <type>zip</type>
+    </dependency>
+    <dependency>
+      <groupId>com.tomitribe.tribestream</groupId>
+      <artifactId>tribestream-metrics-core</artifactId>
+      <version>${version.tribestream}</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.tomitribe.tribestream</groupId>
+      <artifactId>tribestream-container</artifactId>
+      <version>${version.tribestream}</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.tomcat</groupId>
+      <artifactId>tomcat-catalina</artifactId>
+      <version>7.0.69</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.openejb</groupId>
+      <artifactId>openejb-core</artifactId>
+      <version>${openejb.version}</version>
+      <scope>provided</scope>
+    </dependency>
   </dependencies>
 
   <build>
@@ -87,16 +142,42 @@
           <target>1.8</target>
         </configuration>
       </plugin>
+      <plugin>
+        <groupId>org.apache.tomee.maven</groupId>
+        <artifactId>tomee-maven-plugin</artifactId>
+        <version>7.0.1</version>
+        <configuration>
+          <tomeeGroupId>com.tomitribe.tribestream</tomeeGroupId>
+          <tomeeArtifactId>tribestream</tomeeArtifactId>
+          <tomeeVersion>${version.tribestream}</tomeeVersion>
+          <tomeeClassifier>ignore</tomeeClassifier>
+          <removeDefaultWebapps>false</removeDefaultWebapps>
+          <!--<tomeeClassifier>plus</tomeeClassifier>-->
+          <libs>
+            <lib>org.tomitribe:sheldon-api:${version.sheldon}</lib>
+            <lib>org.tomitribe:tomitribe-crest-api:${version.crest}</lib>
+            <lib>org.bouncycastle:bcprov-jdk16:1.46</lib>
+          </libs>
+          <apps>
+            <app>org.tomitribe:sheldon-rar:${version.sheldon}:rar</app>
+          </apps>
+        </configuration>
+      </plugin>
     </plugins>
   </build>
 
   <properties>
-    <tomee.version>1.7.2-TT.1</tomee.version>
+    <minor.version>7.5-TT.10-SNAPSHOT</minor.version>
+    <tomee.version>1.${minor.version}</tomee.version>
+    <openejb.version>4.${minor.version}</openejb.version>
     <openejb.javaee.api>6.0-6</openejb.javaee.api>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <failOnMissingWebXml>false</failOnMissingWebXml>
     <maven.compiler.target>1.8</maven.compiler.target>
     <maven.compiler.source>1.8</maven.compiler.source>
+    <version.crest>0.10-SNAPSHOT</version.crest>
+    <version.sheldon>0.9-SNAPSHOT</version.sheldon>
+    <version.tribestream>0.95-SNAPSHOT</version.tribestream>
   </properties>
 
   <repositories>
