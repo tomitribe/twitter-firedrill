@@ -167,7 +167,7 @@
   </build>
 
   <properties>
-    <minor.version>7.5-TT.10-SNAPSHOT</minor.version>
+    <minor.version>7.5-TT.10</minor.version>
     <tomee.version>1.${minor.version}</tomee.version>
     <openejb.version>4.${minor.version}</openejb.version>
     <openejb.javaee.api>6.0-6</openejb.javaee.api>
