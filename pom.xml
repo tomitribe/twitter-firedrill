@@ -175,9 +175,9 @@
     <failOnMissingWebXml>false</failOnMissingWebXml>
     <maven.compiler.target>1.8</maven.compiler.target>
     <maven.compiler.source>1.8</maven.compiler.source>
-    <version.crest>0.7</version.crest>
-    <version.sheldon>0.9-demo1-SNAPSHOT</version.sheldon>
-    <version.tribestream>0.95-SNAPSHOT</version.tribestream>
+    <version.crest>0.3</version.crest>
+    <version.sheldon>0.8</version.sheldon>
+    <version.tribestream>0.95</version.tribestream>
   </properties>
 
   <repositories>
