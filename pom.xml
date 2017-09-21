@@ -19,15 +19,15 @@
 
   <!-- Change: groupId, artifactId, version -->
   <groupId>com.tomitribe</groupId>
-  <artifactId>twitter</artifactId>
-  <version>1.1.0-superbiz-demo-SNAPSHOT</version>
+  <artifactId>twitter-firedrill</artifactId>
+  <version>1.2.0-SNAPSHOT</version>
 
   <packaging>war</packaging>
 
   <scm>
-    <connection>scm:git:git@github.com:tomitribe/twitter.git</connection>
-    <url>scm:git:git@github.com:tomitribe/twitter.git</url>
-    <developerConnection>scm:git:git@github.com:tomitribe/twitter.git</developerConnection>
+    <connection>scm:git:git@github.com:tomitribe/twitter-firedrill.git</connection>
+    <url>scm:git:git@github.com:tomitribe/twitter-firedrill.git</url>
+    <developerConnection>scm:git:git@github.com:tomitribe/twitter-firedrill.git</developerConnection>
     <tag>twitter-1.0</tag>
   </scm>
 
@@ -65,7 +65,7 @@
     <dependency>
       <groupId>org.tomitribe</groupId>
       <artifactId>firedrill</artifactId>
-      <version>1.0-SNAPSHOT</version>
+      <version>1.0</version>
     </dependency>
     <dependency>
       <groupId>org.tomitribe</groupId>
@@ -125,7 +125,7 @@
   </dependencies>
 
   <build>
-    <finalName>${project.artifactId}</finalName>
+    <finalName>twitter</finalName>
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -189,17 +189,16 @@
   </repositories>
 
   <distributionManagement>
-    <!--You need to define 'server' entries in your settings.xml to gain access here-->
     <repository>
       <id>tomitribe.releases.https</id>
       <name>Tomitribe Release Distribution Repository</name>
-      <!--url>http://repository.tomitribe.com/service/local/staging/deploy/maven2</url-->
-      <url>http://repository.tomitribe.com/content/repositories/releases-tomitribe</url>
+      <url>https://repository.tomitribe.com/service/local/staging/deploy/maven2</url>
     </repository>
+
     <snapshotRepository>
       <id>tomitribe.snapshots.https</id>
       <name>Tomitribe Development Snapshot Repository</name>
-      <url>http://repository.tomitribe.com/content/repositories/snapshots-tomitribe</url>
+      <url>https://repository.tomitribe.com/content/repositories/snapshots-tomitribe</url>
     </snapshotRepository>
   </distributionManagement>
 </project>
